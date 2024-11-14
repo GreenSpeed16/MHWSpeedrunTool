@@ -1,6 +1,6 @@
-#Speedrun Tool for Monster Hunter World: Iceborne.
+# Speedrun Tool for Monster Hunter World: Iceborne.
 
-#Planned features
+## Planned features
 
 - Save management
 - Fixed Tracks
