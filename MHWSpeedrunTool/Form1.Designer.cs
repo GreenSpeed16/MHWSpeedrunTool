@@ -28,13 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            cboRathian = new ComboBox();
+            btnLoadNativePc = new Button();
             SuspendLayout();
+            // 
+            // cboRathian
+            // 
+            cboRathian.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboRathian.FormattingEnabled = true;
+            cboRathian.Location = new Point(12, 40);
+            cboRathian.Name = "cboRathian";
+            cboRathian.Size = new Size(121, 23);
+            cboRathian.TabIndex = 0;
+            // 
+            // btnLoadNativePc
+            // 
+            btnLoadNativePc.Location = new Point(349, 369);
+            btnLoadNativePc.Name = "btnLoadNativePc";
+            btnLoadNativePc.Size = new Size(143, 23);
+            btnLoadNativePc.TabIndex = 2;
+            btnLoadNativePc.Text = "Load to nativePC";
+            btnLoadNativePc.UseVisualStyleBackColor = true;
+            btnLoadNativePc.Click += btnLoadNativePc_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(973, 582);
+            Controls.Add(btnLoadNativePc);
+            Controls.Add(cboRathian);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
@@ -42,5 +65,8 @@
         }
 
         #endregion
+
+        private ComboBox cboRathian;
+        private Button btnLoadNativePc;
     }
 }

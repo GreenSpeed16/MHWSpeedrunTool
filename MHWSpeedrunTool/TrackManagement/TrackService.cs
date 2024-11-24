@@ -8,51 +8,45 @@
          */
         public static void BuildNativePc(Dictionary<string, int> trackPatterns)
         {
-            string nativePcPath = @$"{Constants.APP_DATA_PATH}\nativePC";
-            if (Directory.Exists(@$"{nativePcPath}\stage"))
-            {
-                Directory.Delete(@$"{nativePcPath}\stage", true);
-                Directory.CreateDirectory(@$"{nativePcPath}\stage");
-            }
-
             foreach(string monsterId in trackPatterns.Keys) {
-                foreach(string stageId in Constants.monsterIdToStageListMap[monsterId])
+                foreach(string stageId in Constants.MONSTER_ID_TO_STAGELIST[monsterId])
                 {
                     LoadPattern(stageId, monsterId, trackPatterns[monsterId]);
                 }
             }
         }
 
-        public static void LoadNativePc()
-        {
-            if(Directory.Exists(@$"{Constants.MHW_INSTALL_PATH}\nativePC\stage"))
-            {
-                Directory.Delete(@$"{Constants.MHW_INSTALL_PATH}\nativePC\stage", true);
-            }
-
-            CopyDirectory(@$"{Constants.APP_DATA_PATH}\nativePC", @$"{Constants.MHW_INSTALL_PATH}\nativePC", true);
-        }
-
         static void LoadPattern(string stageId, string monsterId, int patternNumber)
         {
-            if (!Directory.Exists(@$"{Constants.APP_DATA_PATH}\nativePC\stage\{stageId}"))
+            if (!Directory.Exists(@$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}"))
             {
-                Directory.CreateDirectory(@$"{Constants.APP_DATA_PATH}\nativePC\stage\{stageId}\common\set");
+                Directory.CreateDirectory(@$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}\common\set");
             }
 
             for (int i = 1; i <= 3; i++)
             {
                 if (i != patternNumber)
                 {
-                    File.Copy(
-                        @$"{Constants.APP_DATA_PATH}\TrackFiles\{stageId}_traceSP_{monsterId}_0{patternNumber}.sobj",
-                        @$"{Constants.APP_DATA_PATH}\nativePC\stage\{stageId}\common\set\{stageId}_traceSP_{monsterId}_0{i}.sobj"
-                    );
+                    string fileOutput = @$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}\common\set\{stageId}_traceSP_{monsterId}_0{i}.sobj";
+                    
+                    if (File.Exists(fileOutput))
+                    {
+                        File.Delete(fileOutput);
+                    }
+
+                    // Pattern number of 0 means go back to random tracks, so don't replace the files after deletion
+                    if(patternNumber > 0)
+                    {
+                        File.Copy(
+                            @$"{Constants.APP_DATA_PATH}\Track Files\{stageId}_traceSP_{monsterId}_0{patternNumber}.sobj",
+                            fileOutput
+                        );
+                    }
+
                 }
             }
         }
-
-        static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        public static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
         {
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);

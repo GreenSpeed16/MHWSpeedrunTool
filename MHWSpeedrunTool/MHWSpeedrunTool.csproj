@@ -8,4 +8,434 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Track Files\st101_traceSP_em001_01_01.sobj" />
+    <None Remove="Track Files\st101_traceSP_em001_01_02.sobj" />
+    <None Remove="Track Files\st101_traceSP_em001_01_03.sobj" />
+    <None Remove="Track Files\st101_traceSP_em001_01_04.sobj" />
+    <None Remove="Track Files\st101_traceSP_em001_01_05.sobj" />
+    <None Remove="Track Files\st101_traceSP_em024_00_01.sobj" />
+    <None Remove="Track Files\st101_traceSP_em024_00_02.sobj" />
+    <None Remove="Track Files\st101_traceSP_em024_00_03.sobj" />
+    <None Remove="Track Files\st101_traceSP_em024_00_04.sobj" />
+    <None Remove="Track Files\st101_traceSP_em024_00_05.sobj" />
+    <None Remove="Track Files\st101_traceSP_em115_05_01.sobj" />
+    <None Remove="Track Files\st101_traceSP_em115_05_02.sobj" />
+    <None Remove="Track Files\st101_traceSP_em115_05_03.sobj" />
+    <None Remove="Track Files\st101_traceSP_em117_00_01.sobj" />
+    <None Remove="Track Files\st101_traceSP_em124_00_01.sobj" />
+    <None Remove="Track Files\st101_traceSP_em124_00_02.sobj" />
+    <None Remove="Track Files\st101_traceSP_em124_00_03.sobj" />
+    <None Remove="Track Files\st101_traceSP_em125_00_01.sobj" />
+    <None Remove="Track Files\st101_traceSP_em125_00_02.sobj" />
+    <None Remove="Track Files\st101_traceSP_em125_00_03.sobj" />
+    <None Remove="Track Files\st102_traceSP_em001_01_00.sobj" />
+    <None Remove="Track Files\st102_traceSP_em001_01_01.sobj" />
+    <None Remove="Track Files\st102_traceSP_em001_01_02.sobj" />
+    <None Remove="Track Files\st102_traceSP_em001_01_03.sobj" />
+    <None Remove="Track Files\st102_traceSP_em001_01_04.sobj" />
+    <None Remove="Track Files\st102_traceSP_em001_01_05.sobj" />
+    <None Remove="Track Files\st102_traceSP_em027_00_01.sobj" />
+    <None Remove="Track Files\st102_traceSP_em027_00_02.sobj" />
+    <None Remove="Track Files\st102_traceSP_em027_00_03.sobj" />
+    <None Remove="Track Files\st102_traceSP_em027_00_04.sobj" />
+    <None Remove="Track Files\st102_traceSP_em027_00_05.sobj" />
+    <None Remove="Track Files\st102_traceSP_em115_05_01.sobj" />
+    <None Remove="Track Files\st102_traceSP_em115_05_02.sobj" />
+    <None Remove="Track Files\st102_traceSP_em115_05_03.sobj" />
+    <None Remove="Track Files\st102_traceSP_em117_00_01.sobj" />
+    <None Remove="Track Files\st102_traceSP_em124_00_01.sobj" />
+    <None Remove="Track Files\st102_traceSP_em124_00_02.sobj" />
+    <None Remove="Track Files\st102_traceSP_em124_00_03.sobj" />
+    <None Remove="Track Files\st102_traceSP_em125_00_01.sobj" />
+    <None Remove="Track Files\st102_traceSP_em125_00_02.sobj" />
+    <None Remove="Track Files\st102_traceSP_em125_00_03.sobj" />
+    <None Remove="Track Files\st103_traceSP_em001_01_01.sobj" />
+    <None Remove="Track Files\st103_traceSP_em001_01_02.sobj" />
+    <None Remove="Track Files\st103_traceSP_em001_01_03.sobj" />
+    <None Remove="Track Files\st103_traceSP_em001_01_04.sobj" />
+    <None Remove="Track Files\st103_traceSP_em001_01_05.sobj" />
+    <None Remove="Track Files\st103_traceSP_em011_00_01.sobj" />
+    <None Remove="Track Files\st103_traceSP_em011_00_02.sobj" />
+    <None Remove="Track Files\st103_traceSP_em011_00_03.sobj" />
+    <None Remove="Track Files\st103_traceSP_em011_00_04.sobj" />
+    <None Remove="Track Files\st103_traceSP_em011_00_05.sobj" />
+    <None Remove="Track Files\st103_traceSP_em115_05_01.sobj" />
+    <None Remove="Track Files\st103_traceSP_em115_05_02.sobj" />
+    <None Remove="Track Files\st103_traceSP_em115_05_03.sobj" />
+    <None Remove="Track Files\st103_traceSP_em117_00_01.sobj" />
+    <None Remove="Track Files\st103_traceSP_em124_00_01.sobj" />
+    <None Remove="Track Files\st103_traceSP_em124_00_02.sobj" />
+    <None Remove="Track Files\st103_traceSP_em124_00_03.sobj" />
+    <None Remove="Track Files\st103_traceSP_em125_00_01.sobj" />
+    <None Remove="Track Files\st103_traceSP_em125_00_02.sobj" />
+    <None Remove="Track Files\st103_traceSP_em125_00_03.sobj" />
+    <None Remove="Track Files\st104_traceSP_em001_01_01.sobj" />
+    <None Remove="Track Files\st104_traceSP_em001_01_02.sobj" />
+    <None Remove="Track Files\st104_traceSP_em001_01_03.sobj" />
+    <None Remove="Track Files\st104_traceSP_em001_01_04.sobj" />
+    <None Remove="Track Files\st104_traceSP_em001_01_05.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_00_01.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_00_02.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_00_03.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_00_04.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_00_05.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_05_01.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_05_02.sobj" />
+    <None Remove="Track Files\st104_traceSP_em115_05_03.sobj" />
+    <None Remove="Track Files\st104_traceSP_em117_00_01.sobj" />
+    <None Remove="Track Files\st104_traceSP_em124_00_01.sobj" />
+    <None Remove="Track Files\st104_traceSP_em124_00_02.sobj" />
+    <None Remove="Track Files\st104_traceSP_em124_00_03.sobj" />
+    <None Remove="Track Files\st104_traceSP_em125_00_01.sobj" />
+    <None Remove="Track Files\st104_traceSP_em125_00_02.sobj" />
+    <None Remove="Track Files\st104_traceSP_em125_00_03.sobj" />
+    <None Remove="Track Files\st105_traceSP_em103_00_00.sobj" />
+    <None Remove="Track Files\st105_traceSP_em103_00_01.sobj" />
+    <None Remove="Track Files\st105_traceSP_em103_00_02.sobj" />
+    <None Remove="Track Files\st105_traceSP_em103_00_03.sobj" />
+    <None Remove="Track Files\st105_traceSP_em103_00_04.sobj" />
+    <None Remove="Track Files\st105_traceSP_em103_00_05.sobj" />
+    <None Remove="Track Files\st105_traceSP_em115_05_01.sobj" />
+    <None Remove="Track Files\st105_traceSP_em115_05_02.sobj" />
+    <None Remove="Track Files\st105_traceSP_em115_05_03.sobj" />
+    <None Remove="Track Files\st105_traceSP_em117_00_01.sobj" />
+    <None Remove="Track Files\st105_traceSP_em124_00_01.sobj" />
+    <None Remove="Track Files\st105_traceSP_em124_00_02.sobj" />
+    <None Remove="Track Files\st105_traceSP_em124_00_03.sobj" />
+    <None Remove="Track Files\st105_traceSP_em125_00_01.sobj" />
+    <None Remove="Track Files\st105_traceSP_em125_00_02.sobj" />
+    <None Remove="Track Files\st105_traceSP_em125_00_03.sobj" />
+    <None Remove="Track Files\st108_traceSP_em115_05_01.sobj" />
+    <None Remove="Track Files\st108_traceSP_em115_05_02.sobj" />
+    <None Remove="Track Files\st108_traceSP_em115_05_03.sobj" />
+    <None Remove="Track Files\st108_traceSP_em124_00_01.sobj" />
+    <None Remove="Track Files\st108_traceSP_em124_00_02.sobj" />
+    <None Remove="Track Files\st108_traceSP_em124_00_03.sobj" />
+    <None Remove="Track Files\st108_traceSP_em125_00_01.sobj" />
+    <None Remove="Track Files\st108_traceSP_em125_00_02.sobj" />
+    <None Remove="Track Files\st108_traceSP_em125_00_03.sobj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Track Files\st101_traceSP_em001_01_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em001_01_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em001_01_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em001_01_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em001_01_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em024_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em024_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em024_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em024_00_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em024_00_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em115_05_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em115_05_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em115_05_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em117_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em124_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em124_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em124_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em125_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em125_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st101_traceSP_em125_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em001_01_00.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em001_01_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em001_01_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em001_01_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em001_01_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em001_01_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em027_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em027_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em027_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em027_00_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em027_00_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em115_05_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em115_05_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em115_05_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em117_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em124_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em124_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em124_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em125_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em125_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st102_traceSP_em125_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em001_01_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em001_01_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em001_01_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em001_01_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em001_01_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em011_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em011_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em011_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em011_00_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em011_00_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em115_05_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em115_05_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em115_05_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em117_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em124_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em124_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em124_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em125_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em125_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st103_traceSP_em125_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em001_01_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em001_01_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em001_01_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em001_01_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em001_01_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_00_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_00_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_05_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_05_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em115_05_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em117_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em124_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em124_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em124_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em125_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em125_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st104_traceSP_em125_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em103_00_00.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em103_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em103_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em103_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em103_00_04.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em103_00_05.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em115_05_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em115_05_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em115_05_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em117_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em124_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em124_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em124_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em125_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em125_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st105_traceSP_em125_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em115_05_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em115_05_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em115_05_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em124_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em124_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em124_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em125_00_01.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em125_00_02.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Track Files\st108_traceSP_em125_00_03.sobj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

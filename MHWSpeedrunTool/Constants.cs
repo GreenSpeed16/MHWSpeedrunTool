@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MHWSpeedrunTool.TrackManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,19 @@ namespace MHWSpeedrunTool
         public static string BLACKVEIL_ID = "em115_05";
         public static string NAMIELLE_ID = "em125_00";
 
+        public static Dictionary<string, string> MONSTER_NAME_TO_ID = new Dictionary<string, string>
+        {
+            { "Rathian", PINK_RATHIAN_ID },
+            { "Kirin", KIRIN_ID },
+            { "Kushala", KUSHALA_DAORA_ID },
+            { "Teostra", TEOSTRA_ID },
+            { "Nergigante", NERGIGANTE_ID },
+            { "VaalHazak", VAAL_HAZAK_ID },
+            { "Velkhana", VELKHANA_ID },
+            { "Blackveil", BLACKVEIL_ID },
+            { "Namielle", NAMIELLE_ID }
+        };
+
         public static string FOREST_ID = "st101";
         public static string DESERT_ID = "st102";
         public static string CORAL_ID = "st103";
@@ -25,28 +39,11 @@ namespace MHWSpeedrunTool
         public static string RECESS_ID = "st105";
         public static string HOARFROST_ID = "st108";
 
-        static string _appDataPath = "";
-        public static string APP_DATA_PATH
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_appDataPath))
-                {
-                    _appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MHWSpeedrunTool";
-
-                    if(!Directory.Exists(_appDataPath))
-                    {
-                        Directory.CreateDirectory(_appDataPath);
-                    }
-                }
-
-                return _appDataPath;
-            }
-        }
+        public static string APP_DATA_PATH = "";
 
         public static string? MHW_INSTALL_PATH { get; private set; }
 
-        public static Dictionary<string, List<string>> monsterIdToStageListMap = new Dictionary<string, List<string>>{
+        public static Dictionary<string, List<string>> MONSTER_ID_TO_STAGELIST = new Dictionary<string, List<string>>{
             { 
                 PINK_RATHIAN_ID, 
                 new List<string>{
@@ -133,6 +130,16 @@ namespace MHWSpeedrunTool
         {
             // TODO: Properly initialize install path
             MHW_INSTALL_PATH = @"D:\SteamLibrary\steamapps\common\Monster Hunter World";
+            if (string.IsNullOrEmpty(APP_DATA_PATH))
+            {
+                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MHWSpeedrunTool";
+
+                if (!Directory.Exists($@"{APP_DATA_PATH}\Track Files"))
+                {
+                    Directory.CreateDirectory(APP_DATA_PATH);
+                    TrackService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
+                }
+            }
         }
     }
 }
