@@ -4,45 +4,53 @@ namespace MHWSpeedrunTool
 {
     public partial class Form1 : Form
     {
+        List<MonsterPattern> patterns;
         public Form1()
         {
             InitializeComponent();
 
-            var boxData = new List<ComboBoxMapping>{
-                new ComboBoxMapping() { Label = "Random", Value = 0 },
-                new ComboBoxMapping() { Label = "1", Value = 1 },
-                new ComboBoxMapping() { Label = "2", Value = 2 },
-                new ComboBoxMapping() { Label = "3", Value = 3 },
+            patterns = new List<MonsterPattern>{
+                new MonsterPattern(Constants.PINK_RATHIAN_ID),
+                new MonsterPattern(Constants.KIRIN_ID),
+                new MonsterPattern(Constants.TEOSTRA_ID),
+                new MonsterPattern(Constants.KUSHALA_DAORA_ID),
+                new MonsterPattern(Constants.VAAL_HAZAK_ID),
+                new MonsterPattern(Constants.NERGIGANTE_ID),
+                new MonsterPattern(Constants.VELKHANA_ID),
+                new MonsterPattern(Constants.BLACKVEIL_ID),
+                new MonsterPattern(Constants.NAMIELLE_ID),
             };
 
-            BindComboBox(cboRathian, boxData);
-        }
-
-        private void BindComboBox(ComboBox box, List<ComboBoxMapping> source)
-        {
-            box.DataSource = source;
-            box.DisplayMember = "Label";
-            box.ValueMember = "Value";
+            UiController.BindComboBox(cboRathianForest);
+            UiController.BindComboBox(cboRathianWaste);
+            UiController.BindComboBox(cboRathianCoral);
+            UiController.BindComboBox(cboRathianVale);
         }
 
         private void btnLoadNativePc_Click(object sender, EventArgs e)
         {
-            TrackService.BuildNativePc(GetTrackMap());
+            TrackService.BuildNativePc(patterns);
+            UiController.DisableLoadNativePc(btnLoadNativePc);
         }
 
-        private Dictionary<string, int> GetTrackMap()
+        private void cboRathianForest_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Dictionary<string, int> trackMap = new Dictionary<string, int> {
-                { Constants.PINK_RATHIAN_ID, int.Parse(cboRathian.SelectedValue.ToString()) }
-            };
-
-            return trackMap;
+            UiController.HandleComboboxChange((ComboBox)sender, Constants.PINK_RATHIAN_ID, Constants.FOREST_ID, patterns, btnLoadNativePc);
         }
 
-        public class ComboBoxMapping
+        private void cboRathianWaste_SelectedIndexChanged(object sender, EventArgs e)
         {
-            public string Label { get; set; }
-            public int Value { get; set; }
+            UiController.HandleComboboxChange((ComboBox)sender, Constants.PINK_RATHIAN_ID, Constants.WASTE_ID, patterns, btnLoadNativePc);
+        }
+
+        private void cboRathianCoral_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UiController.HandleComboboxChange((ComboBox)sender, Constants.PINK_RATHIAN_ID, Constants.CORAL_ID, patterns, btnLoadNativePc);
+        }
+
+        private void cboRathianVale_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UiController.HandleComboboxChange((ComboBox)sender, Constants.PINK_RATHIAN_ID, Constants.VALE_ID, patterns, btnLoadNativePc);
         }
     }
 }

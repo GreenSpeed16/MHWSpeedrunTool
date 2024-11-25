@@ -6,12 +6,12 @@
          * @param Dictionary<string, int> trackPatterns
          * Take in a map of monster id to pattern number, and build nativePC based on provided values
          */
-        public static void BuildNativePc(Dictionary<string, int> trackPatterns)
+        public static void BuildNativePc(List<MonsterPattern> trackPatterns)
         {
-            foreach(string monsterId in trackPatterns.Keys) {
-                foreach(string stageId in Constants.MONSTER_ID_TO_STAGELIST[monsterId])
+            foreach(MonsterPattern pattern in trackPatterns) {
+                foreach(string stageId in pattern.StageToPatternMap.Keys)
                 {
-                    LoadPattern(stageId, monsterId, trackPatterns[monsterId]);
+                    LoadPattern(stageId, pattern.MonsterId, pattern.StageToPatternMap[stageId]);
                 }
             }
         }
@@ -25,15 +25,15 @@
 
             for (int i = 1; i <= 3; i++)
             {
+                string fileOutput = @$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}\common\set\{stageId}_traceSP_{monsterId}_0{i}.sobj";
+
+                if (File.Exists(fileOutput))
+                {
+                    File.Delete(fileOutput);
+                }
+
                 if (i != patternNumber)
                 {
-                    string fileOutput = @$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}\common\set\{stageId}_traceSP_{monsterId}_0{i}.sobj";
-                    
-                    if (File.Exists(fileOutput))
-                    {
-                        File.Delete(fileOutput);
-                    }
-
                     // Pattern number of 0 means go back to random tracks, so don't replace the files after deletion
                     if(patternNumber > 0)
                     {
