@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MHWSpeedrunTool.TrackManagement
 {
-    internal class MonsterPattern
+    public class MonsterPattern
     {
         public string MonsterId;
         public Dictionary<string, int> StageToPatternMap;
