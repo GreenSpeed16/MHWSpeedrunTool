@@ -49,8 +49,6 @@
             cboVaal = new ComboBox();
             cboTeostra = new ComboBox();
             cboKushala = new ComboBox();
-            cbxShowKirin = new CheckBox();
-            cbxShowMr = new CheckBox();
             gpbBlackveil = new GroupBox();
             lblBlackveilHoarfrost = new Label();
             cboBlackveilHoarfrost = new ComboBox();
@@ -214,7 +212,7 @@
             gpbHrElders.Controls.Add(cboKushala);
             gpbHrElders.Location = new Point(668, 38);
             gpbHrElders.Name = "gpbHrElders";
-            gpbHrElders.Size = new Size(322, 137);
+            gpbHrElders.Size = new Size(322, 187);
             gpbHrElders.TabIndex = 7;
             gpbHrElders.TabStop = false;
             gpbHrElders.Text = "HR Elders";
@@ -316,28 +314,6 @@
             cboKushala.TabIndex = 8;
             cboKushala.SelectedValueChanged += cboKushala_SelectedValueChanged;
             // 
-            // cbxShowKirin
-            // 
-            cbxShowKirin.AutoSize = true;
-            cbxShowKirin.Location = new Point(12, 9);
-            cbxShowKirin.Name = "cbxShowKirin";
-            cbxShowKirin.Size = new Size(82, 19);
-            cbxShowKirin.TabIndex = 8;
-            cbxShowKirin.Text = "Show Kirin";
-            cbxShowKirin.UseVisualStyleBackColor = true;
-            cbxShowKirin.CheckedChanged += cbxShowKirin_CheckedChanged;
-            // 
-            // cbxShowMr
-            // 
-            cbxShowMr.AutoSize = true;
-            cbxShowMr.Location = new Point(100, 9);
-            cbxShowMr.Name = "cbxShowMr";
-            cbxShowMr.Size = new Size(175, 19);
-            cbxShowMr.TabIndex = 9;
-            cbxShowMr.Text = "Show Master Rank Monsters";
-            cbxShowMr.UseVisualStyleBackColor = true;
-            cbxShowMr.CheckedChanged += cbxShowMr_CheckedChanged;
-            // 
             // gpbBlackveil
             // 
             gpbBlackveil.Controls.Add(lblBlackveilHoarfrost);
@@ -358,7 +334,6 @@
             gpbBlackveil.TabIndex = 8;
             gpbBlackveil.TabStop = false;
             gpbBlackveil.Text = "Blackveil Vaal Hazak";
-            gpbBlackveil.Visible = false;
             // 
             // lblBlackveilHoarfrost
             // 
@@ -494,7 +469,6 @@
             gpbVelkhana.TabIndex = 12;
             gpbVelkhana.TabStop = false;
             gpbVelkhana.Text = "Velkhana";
-            gpbVelkhana.Visible = false;
             // 
             // lblVelkhanaHoarfrost
             // 
@@ -630,7 +604,6 @@
             gpbNamielle.TabIndex = 12;
             gpbNamielle.TabStop = false;
             gpbNamielle.Text = "Namielle";
-            gpbNamielle.Visible = false;
             // 
             // lblNamielleHoarfrost
             // 
@@ -756,8 +729,6 @@
             Controls.Add(gpbNamielle);
             Controls.Add(gpbVelkhana);
             Controls.Add(gpbBlackveil);
-            Controls.Add(cbxShowMr);
-            Controls.Add(cbxShowKirin);
             Controls.Add(gpbHrElders);
             Controls.Add(gpbRathian);
             Controls.Add(btnLoadNativePc);
@@ -775,7 +746,6 @@
             gpbNamielle.ResumeLayout(false);
             gpbNamielle.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -801,8 +771,6 @@
         private ComboBox cboKushala;
         private Label lblNergigante;
         private ComboBox cboNergigante;
-        private CheckBox cbxShowKirin;
-        private CheckBox cbxShowMr;
         private GroupBox gpbBlackveil;
         private Label label1;
         private Label label2;

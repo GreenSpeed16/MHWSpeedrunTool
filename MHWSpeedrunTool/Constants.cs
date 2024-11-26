@@ -1,9 +1,15 @@
-﻿using MHWSpeedrunTool.TrackManagement;
+﻿using Gameloop.Vdf.Linq;
+using Gameloop.Vdf;
+using MHWSpeedrunTool.TrackManagement;
+using Microsoft.VisualBasic;
+using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Gameloop.Vdf.JsonConverter;
 
 namespace MHWSpeedrunTool
 {
@@ -41,15 +47,13 @@ namespace MHWSpeedrunTool
 
         public static string APP_DATA_PATH = "";
 
-        public static string? MHW_INSTALL_PATH { get; private set; }
+        public static AppSettings Settings = new AppSettings();
 
         /**
          * Loads the constant strings from JSON file, and saves the JSON to _rawJson for quick access later
          */
         public static void LoadConstantsFromJson()
         {
-            // TODO: Properly initialize install path
-            MHW_INSTALL_PATH = @"D:\SteamLibrary\steamapps\common\Monster Hunter World";
             if (string.IsNullOrEmpty(APP_DATA_PATH))
             {
                 APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MHWSpeedrunTool";
@@ -60,6 +64,54 @@ namespace MHWSpeedrunTool
                     TrackService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
                 }
             }
+
+            if (File.Exists(@$"{APP_DATA_PATH}\appSettings.json"))
+            {
+                Settings = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText($@"{APP_DATA_PATH}\appSettings.json"));
+            }
+            if(String.IsNullOrEmpty(Settings.MhwInstallPath))
+            {
+
+                string mhwPath = FindMhwPath();
+                Console.WriteLine(mhwPath);
+
+                if(!string.IsNullOrEmpty(mhwPath))
+                {
+                    Settings.MhwInstallPath = mhwPath;
+                }
+                else
+                {
+                    Settings.MhwInstallPath = Interaction.InputBox("MHW install folder not found. Please type the path here: ");
+                }
+
+                SaveSettings();
+            }
+
+        }
+
+        public static void SaveSettings()
+        {
+            File.WriteAllText(@$"{APP_DATA_PATH}\appSettings.json", JsonSerializer.Serialize(Settings));
+        }
+
+        static string FindMhwPath()
+        {
+            string steamInstallPath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null).ToString();
+
+            VProperty vdfContent = VdfConvert.Deserialize(File.ReadAllText($"{steamInstallPath}\\steamapps\\libraryfolders.vdf")); // load the vdf file | pass your file path here.
+
+            JObject folderJson = new JObject(vdfContent.ToJson());
+            SteamLibraryFolders folders = folderJson.ToObject<SteamLibraryFolders>();
+
+            foreach(SteamLibraryFolder folder in folders.libraryfolders.Values)
+            {
+                if (folder.apps.ContainsKey("582010"))
+                {
+                    return $"{folder.path}\\steamapps\\common\\Monster Hunter World";
+                }
+            }
+
+            return "";
         }
     }
 }

@@ -1,4 +1,5 @@
 using MHWSpeedrunTool.TrackManagement;
+using System.Runtime.InteropServices;
 
 namespace MHWSpeedrunTool
 {
@@ -52,6 +53,8 @@ namespace MHWSpeedrunTool
             UiController.BindComboBox(cboNamielleVale);
             UiController.BindComboBox(cboNamielleRecess);
             UiController.BindComboBox(cboNamielleHoarfrost);
+
+
         }
 
         private void btnLoadNativePc_Click(object sender, EventArgs e)
@@ -203,25 +206,6 @@ namespace MHWSpeedrunTool
         private void HandleComboboxChange(object sender, string monsterId, string stageId)
         {
             UiController.HandleComboboxChange(sender as ComboBox, monsterId, stageId, patterns, btnLoadNativePc);
-        }
-
-        private void cbxShowKirin_CheckedChanged(object sender, EventArgs e)
-        {
-            var cbx = sender as CheckBox;
-            lblKirin.Visible = cbx.Checked;
-            cboKirin.Visible = cbx.Checked;
-
-            gpbHrElders.Height = cbx.Checked ? 188 : 137;
-        }
-
-        private void cbxShowMr_CheckedChanged(object sender, EventArgs e)
-        {
-            var cbx = sender as CheckBox;
-            gpbVelkhana.Visible = cbx.Checked;
-            gpbBlackveil.Visible = cbx.Checked;
-            gpbNamielle.Visible = cbx.Checked;
-
-            Height = cbx.Checked ? 587 : 365;
         }
     }
 }

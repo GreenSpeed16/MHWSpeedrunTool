@@ -18,14 +18,14 @@
 
         static void LoadPattern(string stageId, string monsterId, int patternNumber)
         {
-            if (!Directory.Exists(@$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}"))
+            if (!Directory.Exists(@$"{Constants.Settings.MhwInstallPath}\nativePC\stage\{stageId}"))
             {
-                Directory.CreateDirectory(@$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}\common\set");
+                Directory.CreateDirectory(@$"{Constants.Settings.MhwInstallPath}\nativePC\stage\{stageId}\common\set");
             }
 
             for (int i = 1; i <= 3; i++)
             {
-                string fileOutput = @$"{Constants.MHW_INSTALL_PATH}\nativePC\stage\{stageId}\common\set\{stageId}_traceSP_{monsterId}_0{i}.sobj";
+                string fileOutput = @$"{Constants.Settings.MhwInstallPath}\nativePC\stage\{stageId}\common\set\{stageId}_traceSP_{monsterId}_0{i}.sobj";
 
                 if (File.Exists(fileOutput))
                 {
