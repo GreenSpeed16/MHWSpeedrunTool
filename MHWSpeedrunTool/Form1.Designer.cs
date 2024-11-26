@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             cboRathianWaste = new ComboBox();
             btnLoadNativePc = new Button();
             cboRathianForest = new ComboBox();
@@ -765,6 +766,7 @@
             Controls.Add(gpbHrElders);
             Controls.Add(gpbRathian);
             Controls.Add(btnLoadNativePc);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MHW Speedrun Tool";

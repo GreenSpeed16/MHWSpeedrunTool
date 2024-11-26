@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>SpeedrunToolIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -118,6 +119,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="SpeedrunToolIcon.ico" />
     <Content Include="Track Files\st101_traceSP_em001_01_01.sobj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
