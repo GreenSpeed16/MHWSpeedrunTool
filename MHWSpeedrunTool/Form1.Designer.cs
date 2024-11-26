@@ -111,7 +111,8 @@
             // 
             // btnLoadNativePc
             // 
-            btnLoadNativePc.Location = new Point(425, 482);
+            btnLoadNativePc.Anchor = AnchorStyles.None;
+            btnLoadNativePc.Location = new Point(416, 514);
             btnLoadNativePc.Name = "btnLoadNativePc";
             btnLoadNativePc.Size = new Size(150, 23);
             btnLoadNativePc.TabIndex = 2;
@@ -159,7 +160,7 @@
             gpbRathian.Controls.Add(cboRathianCoral);
             gpbRathian.Controls.Add(cboRathianVale);
             gpbRathian.Controls.Add(cboRathianWaste);
-            gpbRathian.Location = new Point(12, 38);
+            gpbRathian.Location = new Point(9, 38);
             gpbRathian.Name = "gpbRathian";
             gpbRathian.Size = new Size(322, 137);
             gpbRathian.TabIndex = 6;
@@ -204,6 +205,7 @@
             // 
             // gpbHrElders
             // 
+            gpbHrElders.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             gpbHrElders.Controls.Add(lblNergigante);
             gpbHrElders.Controls.Add(cboNergigante);
             gpbHrElders.Controls.Add(lblKirin);
@@ -214,7 +216,7 @@
             gpbHrElders.Controls.Add(cboVaal);
             gpbHrElders.Controls.Add(cboTeostra);
             gpbHrElders.Controls.Add(cboKushala);
-            gpbHrElders.Location = new Point(667, 38);
+            gpbHrElders.Location = new Point(669, 38);
             gpbHrElders.Name = "gpbHrElders";
             gpbHrElders.Size = new Size(322, 187);
             gpbHrElders.TabIndex = 7;
@@ -318,6 +320,7 @@
             // 
             // gpbBlackveil
             // 
+            gpbBlackveil.Anchor = AnchorStyles.None;
             gpbBlackveil.Controls.Add(lblBlackveilHoarfrost);
             gpbBlackveil.Controls.Add(cboBlackveilHoarfrost);
             gpbBlackveil.Controls.Add(lblBlackveilRecess);
@@ -330,7 +333,7 @@
             gpbBlackveil.Controls.Add(cboBlackveilCoral);
             gpbBlackveil.Controls.Add(cboBlackveilVale);
             gpbBlackveil.Controls.Add(cboBlackveilWaste);
-            gpbBlackveil.Location = new Point(339, 256);
+            gpbBlackveil.Location = new Point(339, 261);
             gpbBlackveil.Name = "gpbBlackveil";
             gpbBlackveil.Size = new Size(322, 195);
             gpbBlackveil.TabIndex = 8;
@@ -453,6 +456,7 @@
             // 
             // gpbVelkhana
             // 
+            gpbVelkhana.Anchor = AnchorStyles.Left;
             gpbVelkhana.Controls.Add(lblVelkhanaHoarfrost);
             gpbVelkhana.Controls.Add(cboVelkhanaHoarfrost);
             gpbVelkhana.Controls.Add(lblVelkhanaRecess);
@@ -465,7 +469,7 @@
             gpbVelkhana.Controls.Add(cboVelkhanaCoral);
             gpbVelkhana.Controls.Add(cboVelkhanaVale);
             gpbVelkhana.Controls.Add(cboVelkhanaWaste);
-            gpbVelkhana.Location = new Point(12, 256);
+            gpbVelkhana.Location = new Point(9, 261);
             gpbVelkhana.Name = "gpbVelkhana";
             gpbVelkhana.Size = new Size(322, 195);
             gpbVelkhana.TabIndex = 12;
@@ -588,6 +592,7 @@
             // 
             // gpbNamielle
             // 
+            gpbNamielle.Anchor = AnchorStyles.Right;
             gpbNamielle.Controls.Add(lblNamielleHoarfrost);
             gpbNamielle.Controls.Add(cboNamielleHoarfrost);
             gpbNamielle.Controls.Add(lblNamielleRecess);
@@ -600,7 +605,7 @@
             gpbNamielle.Controls.Add(cboNamielleCoral);
             gpbNamielle.Controls.Add(cboNamielleVale);
             gpbNamielle.Controls.Add(cboNamielleWaste);
-            gpbNamielle.Location = new Point(667, 256);
+            gpbNamielle.Location = new Point(669, 261);
             gpbNamielle.Name = "gpbNamielle";
             gpbNamielle.Size = new Size(322, 195);
             gpbNamielle.TabIndex = 12;
@@ -723,7 +728,8 @@
             // 
             // btnLocateWorldFolder
             // 
-            btnLocateWorldFolder.Location = new Point(840, 482);
+            btnLocateWorldFolder.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnLocateWorldFolder.Location = new Point(828, 514);
             btnLocateWorldFolder.Name = "btnLocateWorldFolder";
             btnLocateWorldFolder.Size = new Size(150, 23);
             btnLocateWorldFolder.TabIndex = 13;
@@ -733,16 +739,20 @@
             // 
             // lblWorldPath
             // 
-            lblWorldPath.Location = new Point(668, 454);
+            lblWorldPath.AutoSize = true;
+            lblWorldPath.Location = new Point(656, 459);
+            lblWorldPath.MaximumSize = new Size(322, 0);
             lblWorldPath.Name = "lblWorldPath";
-            lblWorldPath.Size = new Size(322, 25);
+            lblWorldPath.RightToLeft = RightToLeft.No;
+            lblWorldPath.Size = new Size(102, 15);
             lblWorldPath.TabIndex = 14;
             lblWorldPath.Text = "MHW Install Path:";
-            lblWorldPath.TextAlign = ContentAlignment.MiddleRight;
+            lblWorldPath.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnSetWorldFolder
             // 
-            btnSetWorldFolder.Location = new Point(668, 482);
+            btnSetWorldFolder.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSetWorldFolder.Location = new Point(656, 514);
             btnSetWorldFolder.Name = "btnSetWorldFolder";
             btnSetWorldFolder.Size = new Size(150, 23);
             btnSetWorldFolder.TabIndex = 15;
@@ -756,7 +766,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1001, 539);
+            ClientSize = new Size(1001, 589);
             Controls.Add(btnSetWorldFolder);
             Controls.Add(lblWorldPath);
             Controls.Add(btnLocateWorldFolder);
@@ -768,6 +778,7 @@
             Controls.Add(btnLoadNativePc);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
+            Padding = new Padding(5, 0, 5, 5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MHW Speedrun Tool";
             gpbRathian.ResumeLayout(false);
@@ -781,6 +792,7 @@
             gpbNamielle.ResumeLayout(false);
             gpbNamielle.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
