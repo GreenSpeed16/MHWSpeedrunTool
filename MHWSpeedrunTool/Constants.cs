@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Gameloop.Vdf.JsonConverter;
+using MHWSpeedrunTool.SteamManagement;
 
 namespace MHWSpeedrunTool
 {
@@ -71,47 +72,9 @@ namespace MHWSpeedrunTool
             }
             if(String.IsNullOrEmpty(Settings.MhwInstallPath))
             {
-
-                string mhwPath = FindMhwPath();
-                Console.WriteLine(mhwPath);
-
-                if(!string.IsNullOrEmpty(mhwPath))
-                {
-                    Settings.MhwInstallPath = mhwPath;
-                }
-                else
-                {
-                    Settings.MhwInstallPath = Interaction.InputBox("MHW install folder not found. Please type the path here: ");
-                }
-
-                SaveSettings();
+                UiController.SetMhwPath(null, false);
             }
 
-        }
-
-        public static void SaveSettings()
-        {
-            File.WriteAllText(@$"{APP_DATA_PATH}\appSettings.json", JsonSerializer.Serialize(Settings));
-        }
-
-        static string FindMhwPath()
-        {
-            string steamInstallPath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null).ToString();
-
-            VProperty vdfContent = VdfConvert.Deserialize(File.ReadAllText($"{steamInstallPath}\\steamapps\\libraryfolders.vdf")); // load the vdf file | pass your file path here.
-
-            JObject folderJson = new JObject(vdfContent.ToJson());
-            SteamLibraryFolders folders = folderJson.ToObject<SteamLibraryFolders>();
-
-            foreach(SteamLibraryFolder folder in folders.libraryfolders.Values)
-            {
-                if (folder.apps.ContainsKey("582010"))
-                {
-                    return $"{folder.path}\\steamapps\\common\\Monster Hunter World";
-                }
-            }
-
-            return "";
         }
     }
 }

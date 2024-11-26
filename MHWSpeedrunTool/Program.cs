@@ -2,7 +2,6 @@ namespace MHWSpeedrunTool
 {
     internal static class Program
     {
-        public static Form formWindow;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -13,8 +12,7 @@ namespace MHWSpeedrunTool
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Constants.LoadConstantsFromJson();
-            formWindow = new Form1();
-            Application.Run(formWindow);
+            Application.Run(new Form1());
         }
     }
 }

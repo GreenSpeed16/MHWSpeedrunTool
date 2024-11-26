@@ -88,6 +88,9 @@
             cboNamielleCoral = new ComboBox();
             cboNamielleVale = new ComboBox();
             cboNamielleWaste = new ComboBox();
+            btnLocateWorldFolder = new Button();
+            lblWorldPath = new Label();
+            btnSetWorldFolder = new Button();
             gpbRathian.SuspendLayout();
             gpbHrElders.SuspendLayout();
             gpbBlackveil.SuspendLayout();
@@ -107,7 +110,7 @@
             // 
             // btnLoadNativePc
             // 
-            btnLoadNativePc.Location = new Point(431, 504);
+            btnLoadNativePc.Location = new Point(425, 482);
             btnLoadNativePc.Name = "btnLoadNativePc";
             btnLoadNativePc.Size = new Size(150, 23);
             btnLoadNativePc.TabIndex = 2;
@@ -210,7 +213,7 @@
             gpbHrElders.Controls.Add(cboVaal);
             gpbHrElders.Controls.Add(cboTeostra);
             gpbHrElders.Controls.Add(cboKushala);
-            gpbHrElders.Location = new Point(668, 38);
+            gpbHrElders.Location = new Point(667, 38);
             gpbHrElders.Name = "gpbHrElders";
             gpbHrElders.Size = new Size(322, 187);
             gpbHrElders.TabIndex = 7;
@@ -244,7 +247,6 @@
             lblKirin.Size = new Size(31, 15);
             lblKirin.TabIndex = 14;
             lblKirin.Text = "Kirin";
-            lblKirin.Visible = false;
             // 
             // lblVaal
             // 
@@ -281,7 +283,6 @@
             cboKirin.Name = "cboKirin";
             cboKirin.Size = new Size(121, 23);
             cboKirin.TabIndex = 11;
-            cboKirin.Visible = false;
             cboKirin.SelectedValueChanged += cboKirin_SelectedValueChanged;
             // 
             // cboVaal
@@ -328,7 +329,7 @@
             gpbBlackveil.Controls.Add(cboBlackveilCoral);
             gpbBlackveil.Controls.Add(cboBlackveilVale);
             gpbBlackveil.Controls.Add(cboBlackveilWaste);
-            gpbBlackveil.Location = new Point(340, 256);
+            gpbBlackveil.Location = new Point(339, 256);
             gpbBlackveil.Name = "gpbBlackveil";
             gpbBlackveil.Size = new Size(322, 195);
             gpbBlackveil.TabIndex = 8;
@@ -598,7 +599,7 @@
             gpbNamielle.Controls.Add(cboNamielleCoral);
             gpbNamielle.Controls.Add(cboNamielleVale);
             gpbNamielle.Controls.Add(cboNamielleWaste);
-            gpbNamielle.Location = new Point(668, 256);
+            gpbNamielle.Location = new Point(667, 256);
             gpbNamielle.Name = "gpbNamielle";
             gpbNamielle.Size = new Size(322, 195);
             gpbNamielle.TabIndex = 12;
@@ -719,6 +720,35 @@
             cboNamielleWaste.TabIndex = 0;
             cboNamielleWaste.SelectedValueChanged += cboNamielleWaste_SelectedValueChanged;
             // 
+            // btnLocateWorldFolder
+            // 
+            btnLocateWorldFolder.Location = new Point(840, 482);
+            btnLocateWorldFolder.Name = "btnLocateWorldFolder";
+            btnLocateWorldFolder.Size = new Size(150, 23);
+            btnLocateWorldFolder.TabIndex = 13;
+            btnLocateWorldFolder.Text = "Locate MHW Folder";
+            btnLocateWorldFolder.UseVisualStyleBackColor = true;
+            btnLocateWorldFolder.Click += btnLocateWorldFolder_Click;
+            // 
+            // lblWorldPath
+            // 
+            lblWorldPath.Location = new Point(668, 454);
+            lblWorldPath.Name = "lblWorldPath";
+            lblWorldPath.Size = new Size(322, 25);
+            lblWorldPath.TabIndex = 14;
+            lblWorldPath.Text = "MHW Install Path:";
+            lblWorldPath.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // btnSetWorldFolder
+            // 
+            btnSetWorldFolder.Location = new Point(668, 482);
+            btnSetWorldFolder.Name = "btnSetWorldFolder";
+            btnSetWorldFolder.Size = new Size(150, 23);
+            btnSetWorldFolder.TabIndex = 15;
+            btnSetWorldFolder.Text = "Input MHW Folder";
+            btnSetWorldFolder.UseVisualStyleBackColor = true;
+            btnSetWorldFolder.Click += btnSetWorldFolder_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -726,6 +756,9 @@
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1001, 539);
+            Controls.Add(btnSetWorldFolder);
+            Controls.Add(lblWorldPath);
+            Controls.Add(btnLocateWorldFolder);
             Controls.Add(gpbNamielle);
             Controls.Add(gpbVelkhana);
             Controls.Add(gpbBlackveil);
@@ -810,5 +843,8 @@
         private ComboBox cboNamielleCoral;
         private ComboBox cboNamielleVale;
         private ComboBox cboNamielleWaste;
+        private Button btnLocateWorldFolder;
+        private Label lblWorldPath;
+        private Button btnSetWorldFolder;
     }
 }
