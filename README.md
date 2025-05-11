@@ -16,8 +16,7 @@ Currently, the program does not save the track patterns you've loaded on restart
 
 ## Planned features
 
-- Save management
-- Fixed Tracks
+- Save management for both Monster Hunter: World and Monster Hunter Wilds
 - nativePC legality verification
 
 ## Additional Credit
