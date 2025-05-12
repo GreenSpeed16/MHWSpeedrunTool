@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using static MHWSpeedrunTool.Form1;
 using MHWSpeedrunTool.SteamManagement;
-using System.Net.NetworkInformation;
 using MHWSpeedrunTool.SaveManagement;
 
 namespace MHWSpeedrunTool
