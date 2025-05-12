@@ -62,8 +62,8 @@ namespace MHWSpeedrunTool
         {
             if (string.IsNullOrEmpty(APP_DATA_PATH))
             {
-                string dataFolderName = IS_TEST ? @"\MHWSpeedrunToolTest" : @"\MHWSpeedrunTool";
-                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + dataFolderName;
+                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                    + (IS_TEST ? @"\MHWSpeedrunToolTest" : @"\MHWSpeedrunTool");
 
                 if (!Directory.Exists($@"{APP_DATA_PATH}\Track Files"))
                 {

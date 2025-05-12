@@ -81,6 +81,7 @@ namespace MHWSpeedrunTool
                 }
             }
 
+            // TODO: Attempt to automatically locate the old save manager
             string oldManagerPath = Interaction.InputBox("Enter the path to the old save manager here. \n (can be found by right clicking it in Task Manager and selecting \"Open file location\").");
 
             if(oldManagerPath != "")
