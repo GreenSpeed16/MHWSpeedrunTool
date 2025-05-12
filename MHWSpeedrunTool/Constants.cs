@@ -16,8 +16,8 @@ namespace MHWSpeedrunTool
 {
     internal class Constants
     {
-        // ENSURE THIS IS FALSE WHEN PUSHING TO MAIN
-        static bool IS_TEST = true;
+        // ENSURE THIS IS FALSE WHEN COMMITTING
+        static bool IS_TEST = false;
 
         // Track management constants
         public static string PINK_RATHIAN_ID = "em001_01";
