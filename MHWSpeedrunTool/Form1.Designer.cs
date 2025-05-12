@@ -265,7 +265,7 @@
             lblTeostra.AutoSize = true;
             lblTeostra.Location = new Point(195, 26);
             lblTeostra.Name = "lblTeostra";
-            lblTeostra.Size = new Size(44, 15);
+            lblTeostra.Size = new Size(45, 15);
             lblTeostra.TabIndex = 12;
             lblTeostra.Text = "Teostra";
             // 
