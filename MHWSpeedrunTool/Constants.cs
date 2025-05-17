@@ -16,6 +16,10 @@ namespace MHWSpeedrunTool
 {
     internal class Constants
     {
+        // ENSURE THIS IS FALSE WHEN COMMITTING
+        static bool IS_TEST = false;
+
+        // Track management constants
         public static string PINK_RATHIAN_ID = "em001_01";
         public static string KIRIN_ID = "em011_00";
         public static string KUSHALA_DAORA_ID = "em024_00";
@@ -46,6 +50,7 @@ namespace MHWSpeedrunTool
         public static string RECESS_ID = "st105";
         public static string HOARFROST_ID = "st108";
 
+        // 
         public static string APP_DATA_PATH = "";
 
         public static AppSettings Settings = new AppSettings();
@@ -57,12 +62,13 @@ namespace MHWSpeedrunTool
         {
             if (string.IsNullOrEmpty(APP_DATA_PATH))
             {
-                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MHWSpeedrunTool";
+                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                    + (IS_TEST ? @"\MHWSpeedrunToolTest" : @"\MHWSpeedrunTool");
 
                 if (!Directory.Exists($@"{APP_DATA_PATH}\Track Files"))
                 {
                     Directory.CreateDirectory(APP_DATA_PATH);
-                    TrackService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
+                    FileService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
                 }
             }
 
@@ -74,7 +80,6 @@ namespace MHWSpeedrunTool
             {
                 UiController.SetMhwPath(null, false);
             }
-
         }
     }
 }
