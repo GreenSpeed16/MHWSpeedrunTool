@@ -19,6 +19,11 @@ namespace MHWSpeedrunTool
         // ENSURE THIS IS FALSE WHEN COMMITTING
         static bool IS_TEST = false;
 
+        // Save management constants
+
+        public static string WORLD_ID = "582010";
+        public static string WILDS_ID = "2246340";
+
         // Track management constants
         public static string PINK_RATHIAN_ID = "em001_01";
         public static string KIRIN_ID = "em011_00";

@@ -9,6 +9,24 @@ namespace MHWSpeedrunTool.SaveManagement
     public class SaveDataService
     {
         /**
+         * @param string saveFileName - Name of the current save file
+         * Loads the selected save, will validate if it exists
+         */
+        public static void LoadSave(string saveFileName)
+        {
+
+        }
+        
+        /**
+         * @param string backupSaveFileName - Name of the current save file
+         * Creates backup of the currently loaded save data
+         */
+        public static void BackupSave(string backupSaveFileName)
+        {
+
+        }
+
+        /**
          * @param string oldFilePath - Path of the old save manager
          * Take in the path to the old save manager, and attempt to copy over all backups
          */
