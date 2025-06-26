@@ -26,12 +26,60 @@ namespace MHWSpeedrunTool.SaveManagement
             GameId = Constants.WORLD_ID;
         }
 
-        public override string LoadSave(string saveFileName)
+        public override void LoadSave(string saveFileName)
         {
-            string savePath = base.LoadSave(saveFileName);
-            File.Copy($@"{Constants.APP_DATA_PATH}\World\{savePath}", $@"{GameSaveFolder}\SAVEDATA1000", true);
+            try
+            {
+                FileService.CopyDirectory($@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(saveFileName)}", $@"{GameSaveFolder}\SAVEDATA1000", true);
+            }
+            catch(Exception e)
+            {
+                if(e is FileNotFoundException || e is DirectoryNotFoundException)
+                {
+                    throw new SaveDataService.FailedToLoadSaveException();
+                }
+                throw e;
+            }
+        }
 
-            return saveFileName.Split(@"\").Last();
+        public override void BackupSave(string backupSaveFileName)
+        {
+            base.BackupSave(backupSaveFileName);
+
+            try
+            {
+                FileService.CopyDirectory($@"{GameSaveFolder}\SAVEDATA1000", $@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(backupSaveFileName)}", true);
+            }
+            catch(Exception e) {
+                // Remove backupSaveFileName from SaveList
+                Constants.Settings.RemoveFromSaveList(backupSaveFileName, SaveList);
+
+                if (e is FileNotFoundException || e is DirectoryNotFoundException)
+                {
+                    throw new SaveDataService.FailedToBackupSaveException();
+                }
+                throw e;
+            }
+        }
+
+        public override void RenameSave(string oldName, string newName)
+        {
+            base.RenameSave(oldName, newName);
+
+            try
+            {
+                File.Move($@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(oldName)}", $@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(newName)}");
+            }
+            catch(Exception e)
+            {
+                Constants.Settings.RenameSave(oldName, SaveList.IndexOf(newName), SaveList);
+
+                if (e is FileNotFoundException || e is DirectoryNotFoundException || e is IOException)
+                {
+                    throw new SaveDataService.FailedToRenameSaveException();
+                }
+                throw e;
+            }
         }
     }
 }

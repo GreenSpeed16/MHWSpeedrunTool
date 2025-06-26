@@ -18,7 +18,7 @@ namespace MHWSpeedrunTool.SaveManagement
         {
             get
             {
-                return $@"{Constants.STEAM_INSTALL_PATH}\userdata\{Constants.STEAM_ID}\{GameId}\remote\";
+                return $@"{Constants.STEAM_INSTALL_PATH}\userdata\{Constants.STEAM_ID}\{GameId}\remote";
             }
         }
 
@@ -26,7 +26,31 @@ namespace MHWSpeedrunTool.SaveManagement
          * @param string saveFileName - Name of the current save file
          * Loads the selected save, will validate if it exists
          */
-        public virtual string LoadSave(string saveFileName)
+        public virtual void LoadSave(string saveFileName)
+        {
+            
+        }
+
+        /**
+         * @param string backupSaveFileName - Name of the current save file
+         * Creates backup of the currently loaded save data
+         */
+        public virtual void BackupSave(string backupSaveFileName)
+        {
+            Constants.Settings.AddToSaveList(backupSaveFileName, SaveList);
+        }
+
+        /**
+         * @param string oldName - Name of the current save file
+         * @param string newName - New name for the save file
+         * Renames the save
+         */
+        public virtual void RenameSave(string oldName, string newName)
+        {
+            Constants.Settings.RenameSave(newName, SaveList.IndexOf(oldName), SaveList);
+        }
+
+        protected string FormatSaveName(string saveFileName)
         {
             if (saveFileName == LoadedSave) return "";
             if (saveFileName == "MainSave")
@@ -39,23 +63,6 @@ namespace MHWSpeedrunTool.SaveManagement
             }
         }
 
-        /**
-         * @param string backupSaveFileName - Name of the current save file
-         * Creates backup of the currently loaded save data
-         */
-        public virtual void BackupSave(string backupSaveFileName)
-        {
 
-        }
-
-        /**
-         * @param string oldName - Name of the current save file
-         * @param string newName - New name for the save file
-         * Renames the save
-         */
-        public virtual void RenameSave(string oldName, string newName)
-        {
-
-        }
     }
 }

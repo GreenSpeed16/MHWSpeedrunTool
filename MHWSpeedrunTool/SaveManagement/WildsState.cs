@@ -26,12 +26,51 @@ namespace MHWSpeedrunTool.SaveManagement
             GameId = Constants.WILDS_ID;
         }
 
-        public override string LoadSave(string saveFileName)
+        public override void LoadSave(string saveFileName)
         {
-            string savePath = base.LoadSave(saveFileName);
+            string savePath = FormatSaveName(saveFileName);
             FileService.CopyDirectory($@"{Constants.APP_DATA_PATH}\Wilds\{savePath}", $@"{GameSaveFolder}\win64", true, true);
+        }
 
-            return saveFileName.Split(@"\").Last();
+        public override void BackupSave(string backupSaveFileName)
+        {
+            base.BackupSave(backupSaveFileName);
+
+            try
+            {
+                FileService.CopyDirectory($@"{GameSaveFolder}\win64", $@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(backupSaveFileName)}", true, true);
+            }
+            catch (Exception e)
+            {
+                // Remove backupSaveFileName from SaveList
+                Constants.Settings.RemoveFromSaveList(backupSaveFileName, SaveList);
+
+                if (e is FileNotFoundException || e is DirectoryNotFoundException)
+                {
+                    throw new SaveDataService.FailedToBackupSaveException();
+                }
+                throw e;
+            }
+        }
+
+        public override void RenameSave(string oldName, string newName)
+        {
+            base.RenameSave(oldName, newName);
+
+            try
+            {
+                Directory.Move($@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(oldName)}", $@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(newName)}");
+            }
+            catch (Exception e)
+            {
+                Constants.Settings.RenameSave(oldName, SaveList.IndexOf(newName), SaveList);
+
+                if (e is FileNotFoundException || e is DirectoryNotFoundException || e is IOException)
+                {
+                    throw new SaveDataService.FailedToRenameSaveException();
+                }
+                throw e;
+            }
         }
     }
 }
