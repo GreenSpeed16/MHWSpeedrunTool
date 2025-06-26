@@ -19,6 +19,24 @@ namespace MHWSpeedrunTool
         // ENSURE THIS IS FALSE WHEN COMMITTING
         static bool IS_TEST = false;
 
+        // Save management constants
+        public static string STEAM_INSTALL_PATH
+        {
+            get
+            {
+                return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null).ToString();
+            }
+        }
+        public static string STEAM_ID
+        {
+            get
+            {
+                return Registry.GetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam\ActiveProcess", "ActiveUser", null).ToString();
+            }
+        }
+        public static string WORLD_ID = "582010";
+        public static string WILDS_ID = "2246340";
+
         // Track management constants
         public static string PINK_RATHIAN_ID = "em001_01";
         public static string KIRIN_ID = "em011_00";

@@ -8,6 +8,46 @@ namespace MHWSpeedrunTool.SaveManagement
 {
     public class SaveDataService
     {
+        static GameState _currentState;
+
+        public enum LoadedGame
+        {
+            World,
+            Wilds
+        }
+
+        /**
+         * @param Game loadedGame - The game that is currently loaded
+         * Changes the game state to the currently loaded game
+         */
+        public static void SwapState(LoadedGame loadedGame)
+        {
+            _currentState = loadedGame == LoadedGame.World ? new WorldState() : new WildsState();
+        }
+
+        /**
+         * @param string saveFileName - Name of the current save file
+         * Loads the selected save, will validate if it exists
+         */
+        public static void LoadSave(string saveFileName)
+        {
+            _currentState.LoadSave(saveFileName);
+        }
+        
+        /**
+         * @param string backupSaveFileName - Name of the current save file
+         * Creates backup of the currently loaded save data
+         */
+        public static void BackupSave(string backupSaveFileName)
+        {
+            _currentState.BackupSave(backupSaveFileName);
+        }
+
+        public static void RenameSave(string oldName, string newName)
+        {
+            _currentState.RenameSave(oldName, newName);
+        }
+
         /**
          * @param string oldFilePath - Path of the old save manager
          * Take in the path to the old save manager, and attempt to copy over all backups
@@ -20,7 +60,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
                 try
                 {
-                    File.Copy(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\MainSave", true);
+                    FileService.CopyDirectory(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\MainSave", true);
                 }
                 catch(FileNotFoundException)
                 {
@@ -41,6 +81,21 @@ namespace MHWSpeedrunTool.SaveManagement
         public class FailedToLoadExistingSavesException : Exception
         {
             public FailedToLoadExistingSavesException() {}
+        }
+
+        public class FailedToLoadSaveException : Exception
+        {
+            public FailedToLoadSaveException() { }
+        }
+
+        public class FailedToBackupSaveException : Exception
+        {
+            public FailedToBackupSaveException() { }
+        }
+
+        public class FailedToRenameSaveException : Exception
+        {
+            public FailedToRenameSaveException() { }
         }
     }
 }
