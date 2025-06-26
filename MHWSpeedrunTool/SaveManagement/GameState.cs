@@ -12,20 +12,38 @@ namespace MHWSpeedrunTool.SaveManagement
 
         public virtual string LoadedSave { get; set; }
 
+        protected string GameId { get; set; }
+
+        protected string GameSaveFolder
+        {
+            get
+            {
+                return $@"{Constants.STEAM_INSTALL_PATH}\userdata\{Constants.STEAM_ID}\{GameId}\remote\";
+            }
+        }
+
         /**
          * @param string saveFileName - Name of the current save file
          * Loads the selected save, will validate if it exists
          */
-        public static void LoadSave(string saveFileName)
+        public virtual string LoadSave(string saveFileName)
         {
-
+            if (saveFileName == LoadedSave) return "";
+            if (saveFileName == "MainSave")
+            {
+                return "MainSave";
+            }
+            else
+            {
+                return $@"Saves\{saveFileName}";
+            }
         }
 
         /**
          * @param string backupSaveFileName - Name of the current save file
          * Creates backup of the currently loaded save data
          */
-        public static void BackupSave(string backupSaveFileName)
+        public virtual void BackupSave(string backupSaveFileName)
         {
 
         }
@@ -35,7 +53,7 @@ namespace MHWSpeedrunTool.SaveManagement
          * @param string newName - New name for the save file
          * Renames the save
          */
-        public static void RenameSave(string oldName, string newName)
+        public virtual void RenameSave(string oldName, string newName)
         {
 
         }

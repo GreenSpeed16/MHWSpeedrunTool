@@ -23,6 +23,15 @@ namespace MHWSpeedrunTool.SaveManagement
         public WildsState() : base()
         {
             SaveList = Constants.Settings.WildsSaveList;
+            GameId = Constants.WILDS_ID;
+        }
+
+        public override string LoadSave(string saveFileName)
+        {
+            string savePath = base.LoadSave(saveFileName);
+            FileService.CopyDirectory($@"{Constants.APP_DATA_PATH}\Wilds\{savePath}", $@"{GameSaveFolder}\win64", true, true);
+
+            return saveFileName.Split(@"\").Last();
         }
     }
 }

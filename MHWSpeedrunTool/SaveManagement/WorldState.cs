@@ -23,6 +23,15 @@ namespace MHWSpeedrunTool.SaveManagement
         public WorldState() : base()
         {
             SaveList = Constants.Settings.WorldSaveList;
+            GameId = Constants.WORLD_ID;
+        }
+
+        public override string LoadSave(string saveFileName)
+        {
+            string savePath = base.LoadSave(saveFileName);
+            File.Copy($@"{Constants.APP_DATA_PATH}\World\{savePath}", $@"{GameSaveFolder}\SAVEDATA1000", true);
+
+            return saveFileName.Split(@"\").Last();
         }
     }
 }

@@ -15,9 +15,7 @@ namespace MHWSpeedrunTool.SteamManagement
     {
         public static string FindMhwInstall()
         {
-            string steamInstallPath = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null).ToString();
-
-            VProperty vdfContent = VdfConvert.Deserialize(File.ReadAllText($"{steamInstallPath}\\steamapps\\libraryfolders.vdf")); // load the vdf file | pass your file path here.
+            VProperty vdfContent = VdfConvert.Deserialize(File.ReadAllText($"{Constants.STEAM_INSTALL_PATH}\\steamapps\\libraryfolders.vdf")); // load the vdf file | pass your file path here.
 
             JObject folderJson = new JObject(vdfContent.ToJson());
             SteamLibraryFolders folders = folderJson.ToObject<SteamLibraryFolders>();
