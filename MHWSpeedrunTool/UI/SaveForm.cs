@@ -16,5 +16,10 @@ namespace MHWSpeedrunTool
         {
             InitializeComponent();
         }
+
+        public void ChangeTitle(string title)
+        {
+            lblWorldTitle.Text = title;
+        }
     }
 }
