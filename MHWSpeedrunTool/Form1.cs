@@ -60,7 +60,7 @@ namespace MHWSpeedrunTool
             }
 
             string gameString = (loadedGame == SaveDataService.LoadedGame.World ? "World" : "Wilds");
-            saveForm.Text =  $"{gameString} Save Management";
+            saveForm.Text = $"{gameString} Save Management";
             saveForm.ChangeTitle(gameString);
             SaveDataService.SwapState(loadedGame);
         }
@@ -68,6 +68,11 @@ namespace MHWSpeedrunTool
         private void SaveForm_FormClosed(object sender, EventArgs e)
         {
             trackForm = null;
+        }
+
+        private void btnTransferFromOldManager_Click(object sender, EventArgs e)
+        {
+            UiController.TransferDataFromOldSaveManager();
         }
     }
 }

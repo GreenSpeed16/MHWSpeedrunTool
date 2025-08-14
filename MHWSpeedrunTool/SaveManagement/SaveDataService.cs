@@ -60,7 +60,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
                 try
                 {
-                    FileService.CopyDirectory(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\MainSave", true);
+                    File.Copy(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\MainSave", true);
                 }
                 catch(FileNotFoundException)
                 {

@@ -1,14 +1,15 @@
-﻿using MHWSpeedrunTool.TrackManagement;
+﻿using MHWSpeedrunTool.SaveManagement;
+using MHWSpeedrunTool.SteamManagement;
+using MHWSpeedrunTool.TrackManagement;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using static MHWSpeedrunTool.Form1;
-using MHWSpeedrunTool.SteamManagement;
-using MHWSpeedrunTool.SaveManagement;
 
 namespace MHWSpeedrunTool
 {
@@ -81,10 +82,21 @@ namespace MHWSpeedrunTool
                 }
             }
 
-            // TODO: Attempt to automatically locate the old save manager
-            string oldManagerPath = Interaction.InputBox("Enter the path to the old save manager here. \n (can be found by right clicking it in Task Manager and selecting \"Open file location\").");
+            // Get save manager path by checking running processes
+            Process[] processes = Process.GetProcessesByName("MHWSaveManager");
+            string oldManagerPath = "";
 
-            if(oldManagerPath != "")
+            if (processes.Length > 0) {
+                List<string> messageParts = processes[0].MainModule.FileName.Split("\\").ToList();
+                messageParts.RemoveAt(messageParts.Count - 1);
+                oldManagerPath = string.Join("\\", messageParts);
+            }
+            else
+            {
+                Interaction.InputBox("Unable to automatically locate old save manager. Enter the path to the old save manager here. \n (can be found by right clicking it in Task Manager and selecting \"Open file location\").");
+            }
+
+            if (oldManagerPath != "")
             {
                 string outputMessage = "Successfully transferred saves from the old manager!";
                 string outputHeading = "Success!";
