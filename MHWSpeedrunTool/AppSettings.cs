@@ -54,6 +54,19 @@ namespace MHWSpeedrunTool
             }
         }
 
+        string _loadedTab;
+        public string LoadedTab
+        {
+            get
+            {
+                return this._loadedTab;
+            }
+            set
+            {
+                this._loadedTab = value;
+                SaveSettings();
+            }
+        }
 
         // Extremely simplistic for now, but will be useful when save management is added
 

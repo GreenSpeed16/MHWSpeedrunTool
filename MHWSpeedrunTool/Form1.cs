@@ -13,21 +13,24 @@ namespace MHWSpeedrunTool
         public Form1()
         {
             InitializeComponent();
+
+            if(Constants.Settings.LoadedTab == Constants.WORLD_SAVE_TAB)
+            {
+                setSaveForm(SaveDataService.LoadedGame.World);
+            }
+            else if (Constants.Settings.LoadedTab == Constants.WILDS_SAVE_TAB)
+            {
+                setSaveForm(SaveDataService.LoadedGame.Wilds);
+            }
+            else
+            {
+                setTrackForm();
+            }
         }
 
         private void btnLoadTrackForm_Click(object sender, EventArgs e)
         {
-            if (trackForm == null)
-            {
-                trackForm = new WorldTrackForm();
-                trackForm.FormClosed += WorldTrackForm_FormClosed;
-                trackForm.MdiParent = this;
-                trackForm.Show();
-            }
-            else
-            {
-                trackForm.Activate();
-            }
+            setTrackForm();
         }
 
         private void WorldTrackForm_FormClosed(object sender, EventArgs e)
@@ -43,6 +46,7 @@ namespace MHWSpeedrunTool
         private void btnLoadWildsSaveForm_Click(object sender, EventArgs e)
         {
             setSaveForm(SaveDataService.LoadedGame.Wilds);
+            Constants.Settings.LoadedTab = Constants.WILDS_SAVE_TAB;
         }
 
         void setSaveForm(SaveDataService.LoadedGame loadedGame)
@@ -59,10 +63,38 @@ namespace MHWSpeedrunTool
                 saveForm.Activate();
             }
 
-            string gameString = (loadedGame == SaveDataService.LoadedGame.World ? "World" : "Wilds");
+            string gameString = "";
+
+            if (loadedGame == SaveDataService.LoadedGame.World)
+            {
+                gameString = "World";
+                Constants.Settings.LoadedTab = Constants.WORLD_SAVE_TAB;
+            }
+            else
+            {
+                gameString = "Wilds";
+                Constants.Settings.LoadedTab = Constants.WILDS_SAVE_TAB;
+            }
+
             saveForm.Text =  $"{gameString} Save Management";
             saveForm.ChangeTitle(gameString);
             SaveDataService.SwapState(loadedGame);
+        }
+
+        void setTrackForm()
+        {
+            if (trackForm == null)
+            {
+                trackForm = new WorldTrackForm();
+                trackForm.FormClosed += WorldTrackForm_FormClosed;
+                trackForm.MdiParent = this;
+                trackForm.Show();
+            }
+            else
+            {
+                trackForm.Activate();
+            }
+            Constants.Settings.LoadedTab = Constants.WORLD_TRACKS_TAB;
         }
 
         private void SaveForm_FormClosed(object sender, EventArgs e)
