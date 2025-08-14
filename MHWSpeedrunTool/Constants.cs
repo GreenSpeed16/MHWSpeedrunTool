@@ -74,6 +74,35 @@ namespace MHWSpeedrunTool
         public static AppSettings Settings = new AppSettings();
 
         /**
+         * Checks current saves in the saves folder against the list from appSettings.json and removes or adds based on missing items
+         */
+        public static void SynchronizeSaveList(List<string> saveFiles, List<string> saveList)
+        {
+            List<string> missingSavesFromSaveList = saveFiles.Except(saveList).ToList();
+            List<string> extraSavesFromSaveList = saveList.Except(saveFiles).ToList();
+
+            foreach (var difference in missingSavesFromSaveList)
+            {
+                Settings.AddToSaveList(difference, saveList);
+            }
+
+            foreach (var difference in extraSavesFromSaveList)
+            {
+                Settings.RemoveFromSaveList(difference, saveList);
+            }
+        }
+
+        public static void SetFileNames(List<string> fileList)
+        {
+            int fileCount = fileList.Count;
+
+            for(int i = 0; i < fileCount; i++)
+            {
+                fileList[i] = Path.GetFileName(fileList[i]);
+            }
+        }
+
+        /**
          * Loads the constant strings from JSON file, and saves the JSON to _rawJson for quick access later
          */
         public static void LoadConstantsFromJson()
@@ -93,11 +122,18 @@ namespace MHWSpeedrunTool
             if (File.Exists(@$"{APP_DATA_PATH}\appSettings.json"))
             {
                 Settings = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText($@"{APP_DATA_PATH}\appSettings.json"));
+
             }
-            if(String.IsNullOrEmpty(Settings.MhwInstallPath))
-            {
-                UiController.SetMhwPath(null, false);
-            }
+
+            // Get list of saves in the app folder for World and Wilds
+            List<string> currentWorldSaves = Directory.GetFiles($@"{APP_DATA_PATH}\World\Saves").ToList();
+            List<string> currentWildsSaves = Directory.GetDirectories($@"{APP_DATA_PATH}\wilds\Saves").ToList();
+
+            SetFileNames(currentWorldSaves);
+            SetFileNames(currentWildsSaves);
+
+            SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList);
+            SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList);
         }
     }
 }
