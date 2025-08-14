@@ -54,8 +54,6 @@ namespace MHWSpeedrunTool
             UiController.BindComboBox(cboNamielleVale);
             UiController.BindComboBox(cboNamielleRecess);
             UiController.BindComboBox(cboNamielleHoarfrost);
-
-            lblWorldPath.Text = UiController.GetWorldPathLabelText();
         }
 
         private void btnLoadNativePc_Click(object sender, EventArgs e)
@@ -202,16 +200,6 @@ namespace MHWSpeedrunTool
         private void cboNamielleHoarfrost_SelectedValueChanged(object sender, EventArgs e)
         {
             HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.HOARFROST_ID);
-        }
-
-        private void btnLocateWorldFolder_Click(object sender, EventArgs e)
-        {
-            UiController.SetMhwPath(lblWorldPath, false);
-        }
-
-        private void btnSetWorldFolder_Click(object sender, EventArgs e)
-        {
-            UiController.SetMhwPath(lblWorldPath, true);
         }
 
         private void HandleComboboxChange(object sender, string monsterId, string stageId)
