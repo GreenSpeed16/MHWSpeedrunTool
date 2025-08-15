@@ -58,6 +58,11 @@ namespace MHWSpeedrunTool.SaveManagement
             {
                 FileService.CopyDirectory(oldFilePath + @"\Saves", $@"{Constants.APP_DATA_PATH}\World\Saves", true, true);
 
+                foreach(string saveName in Directory.GetFiles($@"{Constants.APP_DATA_PATH}\World\Saves").ToList())
+                {
+                    Constants.Settings.AddToSaveList(Path.GetFileName(saveName), Constants.Settings.WorldSaveList);
+                }
+
                 try
                 {
                     File.Copy(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\MainSave", true);
