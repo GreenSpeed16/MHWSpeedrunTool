@@ -66,6 +66,7 @@ namespace MHWSpeedrunTool
                 this._loadedTab = value;
                 SaveSettings();
             }
+        }
 
         public AppSettings() {
             WorldSaveList = new List<string>();
