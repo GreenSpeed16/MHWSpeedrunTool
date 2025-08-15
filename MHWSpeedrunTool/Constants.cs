@@ -81,16 +81,37 @@ namespace MHWSpeedrunTool
             List<string> missingSavesFromSaveList = saveFiles.Except(saveList).ToList();
             List<string> extraSavesFromSaveList = saveList.Except(saveFiles).ToList();
 
+            List<string> savesRemoved = new List<string>();
+            List<string> savesAdded = new List<string>();
+
             foreach (var difference in missingSavesFromSaveList)
             {
                 Settings.AddToSaveList(difference, saveList);
+                savesAdded.Add(difference);
             }
 
             foreach (var difference in extraSavesFromSaveList)
             {
                 Settings.RemoveFromSaveList(difference, saveList);
+                savesRemoved.Add(difference);
             }
+
+            if (savesRemoved.Count > 0)
+            {
+                string savesRemovedList = string.Join(Environment.NewLine, savesRemoved);
+                MessageBox.Show($"Could not find corresponding backups for these saves, so they have been removed:\n{savesRemovedList}","Saves Removed", MessageBoxButtons.OK);
+            }
+            if (savesAdded.Count > 0)
+            {
+                string savesAddedList = string.Join(Environment.NewLine, savesAdded);
+                MessageBox.Show($"The following saves have backup files, but were not stored in the save list and have now been added:\n{savesAddedList}","Saves Added", MessageBoxButtons.OK);
+            }
+
         }
+
+        /**
+         * This edits the list of file names or direectories to only have the name instead of the full UNC path
+         */
 
         public static void SetFileNames(List<string> fileList)
         {
