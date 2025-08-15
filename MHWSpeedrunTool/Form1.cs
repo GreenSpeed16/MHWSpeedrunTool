@@ -101,5 +101,10 @@ namespace MHWSpeedrunTool
         {
             trackForm = null;
         }
+
+        private void btnTransferFromOldManager_Click(object sender, EventArgs e)
+        {
+            UiController.TransferDataFromOldSaveManager();
+        }
     }
 }

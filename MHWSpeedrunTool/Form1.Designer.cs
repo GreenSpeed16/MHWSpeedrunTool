@@ -34,12 +34,14 @@
             btnLoadWorldSaveForm = new Button();
             btnLoadTrackForm = new Button();
             menuStrip1 = new MenuStrip();
+            btnTransferFromOldManager = new Button();
             pnlNavigation.SuspendLayout();
             SuspendLayout();
             // 
             // pnlNavigation
             // 
             pnlNavigation.BackColor = SystemColors.ControlDark;
+            pnlNavigation.Controls.Add(btnTransferFromOldManager);
             pnlNavigation.Controls.Add(btnLoadWildsSaveForm);
             pnlNavigation.Controls.Add(btnLoadWorldSaveForm);
             pnlNavigation.Controls.Add(btnLoadTrackForm);
@@ -101,6 +103,20 @@
             menuStrip1.Text = "menuStrip1";
             menuStrip1.Visible = false;
             // 
+            // btnTransferFromOldManager
+            // 
+            btnTransferFromOldManager.BackColor = SystemColors.ControlDark;
+            btnTransferFromOldManager.FlatAppearance.BorderColor = SystemColors.ControlDark;
+            btnTransferFromOldManager.FlatAppearance.BorderSize = 0;
+            btnTransferFromOldManager.FlatStyle = FlatStyle.Flat;
+            btnTransferFromOldManager.Location = new Point(1008, 3);
+            btnTransferFromOldManager.Name = "btnTransferFromOldManager";
+            btnTransferFromOldManager.Size = new Size(164, 23);
+            btnTransferFromOldManager.TabIndex = 9;
+            btnTransferFromOldManager.Text = "Transfer From Old Manager";
+            btnTransferFromOldManager.UseVisualStyleBackColor = false;
+            btnTransferFromOldManager.Click += btnTransferFromOldManager_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -126,5 +142,6 @@
         private Button btnLoadWildsSaveForm;
         private Button btnLoadWorldSaveForm;
         private MenuStrip menuStrip1;
+        private Button btnTransferFromOldManager;
     }
 }
