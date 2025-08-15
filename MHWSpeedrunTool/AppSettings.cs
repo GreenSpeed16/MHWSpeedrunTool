@@ -54,6 +54,19 @@ namespace MHWSpeedrunTool
             }
         }
 
+        string _loadedTab;
+        public string LoadedTab
+        {
+            get
+            {
+                return this._loadedTab;
+            }
+            set
+            {
+                this._loadedTab = value;
+                SaveSettings();
+            }
+
         public AppSettings() {
             WorldSaveList = new List<string>();
             WildsSaveList = new List<string>();

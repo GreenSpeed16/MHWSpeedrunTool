@@ -68,8 +68,12 @@ namespace MHWSpeedrunTool
         public static string RECESS_ID = "st105";
         public static string HOARFROST_ID = "st108";
 
-        // 
         public static string APP_DATA_PATH = "";
+
+        // Tab settings
+        public static string WORLD_TRACKS_TAB = "WorldTracks";
+        public static string WORLD_SAVE_TAB = "WorldSaves";
+        public static string WILDS_SAVE_TAB = "WildsSaves";        
 
         public static AppSettings Settings = new AppSettings();
 
