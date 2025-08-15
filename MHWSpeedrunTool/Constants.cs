@@ -102,12 +102,12 @@ namespace MHWSpeedrunTool
 
             if (savesRemoved.Count > 0)
             {
-                string savesRemovedList = string.Join(Environment.NewLine, savesRemoved);
+                string savesRemovedList = string.Join(Environment.NewLine, savesRemoved.Take(5)) + (savesRemoved.Count > 5 ? $"\nAnd {savesRemoved.Count - 5} more" : "");
                 MessageBox.Show($"Could not find corresponding backups for these saves, so they have been removed:\n{savesRemovedList}","Saves Removed", MessageBoxButtons.OK);
             }
             if (savesAdded.Count > 0)
             {
-                string savesAddedList = string.Join(Environment.NewLine, savesAdded);
+                string savesAddedList = string.Join(Environment.NewLine, savesAdded.Take(5)) + (savesAdded.Count > 5 ? $"\nAnd {savesAdded.Count - 5} more" : "");
                 MessageBox.Show($"The following saves have backup files, but were not stored in the save list and have now been added:\n{savesAddedList}","Saves Added", MessageBoxButtons.OK);
             }
 
