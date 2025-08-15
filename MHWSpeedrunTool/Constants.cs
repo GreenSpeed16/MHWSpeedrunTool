@@ -142,6 +142,14 @@ namespace MHWSpeedrunTool
                     Directory.CreateDirectory(APP_DATA_PATH);
                     FileService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
                 }
+                if (!Directory.Exists($@"{APP_DATA_PATH}\World\Saves"))
+                {
+                    Directory.CreateDirectory($@"{APP_DATA_PATH}\World\Saves");
+                }
+                if (!Directory.Exists($@"{APP_DATA_PATH}\Wilds\Saves"))
+                {
+                    Directory.CreateDirectory($@"{APP_DATA_PATH}\Wilds\Saves");
+                }
             }
 
             if (File.Exists(@$"{APP_DATA_PATH}\appSettings.json"))
