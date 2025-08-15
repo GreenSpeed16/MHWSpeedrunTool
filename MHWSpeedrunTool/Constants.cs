@@ -78,6 +78,56 @@ namespace MHWSpeedrunTool
         public static AppSettings Settings = new AppSettings();
 
         /**
+         * Checks current saves in the saves folder against the list from appSettings.json and removes or adds based on missing items
+         */
+        public static void SynchronizeSaveList(List<string> saveFiles, List<string> saveList)
+        {
+            List<string> missingSavesFromSaveList = saveFiles.Except(saveList).ToList();
+            List<string> extraSavesFromSaveList = saveList.Except(saveFiles).ToList();
+
+            List<string> savesRemoved = new List<string>();
+            List<string> savesAdded = new List<string>();
+
+            foreach (var difference in missingSavesFromSaveList)
+            {
+                Settings.AddToSaveList(difference, saveList);
+                savesAdded.Add(difference);
+            }
+
+            foreach (var difference in extraSavesFromSaveList)
+            {
+                Settings.RemoveFromSaveList(difference, saveList);
+                savesRemoved.Add(difference);
+            }
+
+            if (savesRemoved.Count > 0)
+            {
+                string savesRemovedList = string.Join(Environment.NewLine, savesRemoved);
+                MessageBox.Show($"Could not find corresponding backups for these saves, so they have been removed:\n{savesRemovedList}","Saves Removed", MessageBoxButtons.OK);
+            }
+            if (savesAdded.Count > 0)
+            {
+                string savesAddedList = string.Join(Environment.NewLine, savesAdded);
+                MessageBox.Show($"The following saves have backup files, but were not stored in the save list and have now been added:\n{savesAddedList}","Saves Added", MessageBoxButtons.OK);
+            }
+
+        }
+
+        /**
+         * This edits the list of file names or direectories to only have the name instead of the full UNC path
+         */
+
+        public static void SetFileNames(List<string> fileList)
+        {
+            int fileCount = fileList.Count;
+
+            for(int i = 0; i < fileCount; i++)
+            {
+                fileList[i] = Path.GetFileName(fileList[i]);
+            }
+        }
+
+        /**
          * Loads the constant strings from JSON file, and saves the JSON to _rawJson for quick access later
          */
         public static void LoadConstantsFromJson()
@@ -97,11 +147,18 @@ namespace MHWSpeedrunTool
             if (File.Exists(@$"{APP_DATA_PATH}\appSettings.json"))
             {
                 Settings = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText($@"{APP_DATA_PATH}\appSettings.json"));
+
             }
-            if(String.IsNullOrEmpty(Settings.MhwInstallPath))
-            {
-                UiController.SetMhwPath(null, false);
-            }
+
+            // Get list of saves in the app folder for World and Wilds
+            List<string> currentWorldSaves = Directory.GetFiles($@"{APP_DATA_PATH}\World\Saves").ToList();
+            List<string> currentWildsSaves = Directory.GetDirectories($@"{APP_DATA_PATH}\wilds\Saves").ToList();
+
+            SetFileNames(currentWorldSaves);
+            SetFileNames(currentWildsSaves);
+
+            SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList);
+            SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList);
         }
     }
 }
