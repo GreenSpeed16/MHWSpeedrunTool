@@ -22,7 +22,7 @@ namespace MHWSpeedrunTool
             }
         }
 
-        public List<string> WorldSaveList;
+        public List<string> WorldSaveList { get; set; }
 
         string _worldLoadedSave;
         public string WorldLoadedSave
@@ -38,7 +38,7 @@ namespace MHWSpeedrunTool
             }
         }
 
-        public List<string> WildsSaveList;
+        public List<string> WildsSaveList { get; set; }
 
         string _wildsLoadedSave;
         public string WildsLoadedSave
@@ -54,6 +54,23 @@ namespace MHWSpeedrunTool
             }
         }
 
+        string _loadedTab;
+        public string LoadedTab
+        {
+            get
+            {
+                return this._loadedTab;
+            }
+            set
+            {
+                this._loadedTab = value;
+                SaveSettings();
+            }
+
+        public AppSettings() {
+            WorldSaveList = new List<string>();
+            WildsSaveList = new List<string>();
+        }
 
         // Extremely simplistic for now, but will be useful when save management is added
 
