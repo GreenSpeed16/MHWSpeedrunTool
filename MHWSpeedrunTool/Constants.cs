@@ -17,7 +17,7 @@ namespace MHWSpeedrunTool
     internal class Constants
     {
         // ENSURE THIS IS FALSE WHEN COMMITTING
-        static bool IS_TEST = true;
+        static bool IS_TEST = false;
 
         // Save management constants
         public static string STEAM_INSTALL_PATH
