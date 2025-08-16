@@ -114,6 +114,7 @@
             lblSaveName.Name = "lblSaveName";
             lblSaveName.Size = new Size(128, 15);
             lblSaveName.TabIndex = 2;
+            lblSaveName.TextAlign = ContentAlignment.TopCenter;
             // 
             // cmdLoadMainSave
             // 

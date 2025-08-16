@@ -63,6 +63,31 @@ namespace MHWSpeedrunTool
         }
 
         /**
+         * Checks to see if file name has invalid characters
+         */
+
+        public static string? FileNameValidator(string fileName)
+        {
+            if(fileName == "Main")
+            {
+                return "Cannot name save 'Main' ";
+            }
+
+            char[] invalidCharacters = Path.GetInvalidFileNameChars();
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return "Cannot have blank file name.";
+            }
+            var foundInvalidCharacters = fileName.Where(c => invalidCharacters.Contains(c));
+
+            if (foundInvalidCharacters.Any())
+            {
+                return $"File name contains the following invalid characters:\n{foundInvalidCharacters.ToArray()}";
+            }
+            return null;
+        }
+
+        /**
          * Handles all dialog and calls for transferring save data between the old manager and this tool.
          * Not currently referenced anywhere, will be triggered from the settings menu once it's created.
          */
@@ -175,7 +200,31 @@ namespace MHWSpeedrunTool
                 }
             }
             SaveDataService.LoadSave(selectedSave);
-            saveNameLabel.Text = selectedSave;
+            saveNameLabel.Text = SaveDataService.LoadedSave;
+        }
+
+        public static void RenameSave(string selectedSave, Label saveNameLabel)
+        {
+
+            string userResponse = Interaction.InputBox($"Please enter the new save name.", "Rename Save", $"{selectedSave}");
+
+            bool inputVerification = false;
+
+            while(!inputVerification)
+            {
+                string? nameValidation = FileNameValidator(userResponse);
+
+                if(!string.IsNullOrEmpty(nameValidation))
+                {
+                    userResponse = Interaction.InputBox($"{nameValidation}\n Please enter a valid save name.", "Rename Save", $"{selectedSave}");
+                }
+                else
+                {
+                    inputVerification = true;
+                }
+            }
+            SaveDataService.RenameSave(selectedSave, userResponse);
+            saveNameLabel.Text = SaveDataService.LoadedSave;
         }
 
         public class ComboBoxMapping

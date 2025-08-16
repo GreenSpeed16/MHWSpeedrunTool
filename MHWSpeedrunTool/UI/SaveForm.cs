@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MHWSpeedrunTool.SaveManagement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,7 @@ namespace MHWSpeedrunTool
 
         public void ChangeTitle(string title)
         {
+            lblSaveName.Text = SaveDataService.LoadedSave;
             lblGameTitle.Text = title;
             UiController.SetSaveList(lstSaveNames);
         }
@@ -30,7 +32,8 @@ namespace MHWSpeedrunTool
 
         private void cmdRenameSelectedSave_Click(object sender, EventArgs e)
         {
-
+            UiController.RenameSave(lstSaveNames.SelectedItem.ToString(),lblSaveName);
+            UiController.SetSaveList(lstSaveNames);
         }
 
         private void cmdDeleteSelectedSave_Click(object sender, EventArgs e)
