@@ -10,6 +10,14 @@ namespace MHWSpeedrunTool.SaveManagement
     {
         static GameState _currentState;
 
+        public static List<string> CurrentSaveList
+        {
+            get
+            {
+                return _currentState.SaveList;
+            }
+        }
+
         public enum LoadedGame
         {
             World,

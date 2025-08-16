@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static MHWSpeedrunTool.Form1;
@@ -151,6 +152,15 @@ namespace MHWSpeedrunTool
             box.DataSource = boxData;
             box.DisplayMember = "Label";
             box.ValueMember = "Value";
+        }
+
+        public static void SetSaveList(ListBox saveList)
+        {
+            saveList.Items.Clear();
+            foreach(string save in SaveDataService.CurrentSaveList)
+            {
+                saveList.Items.Add(save);
+            }
         }
 
         public class ComboBoxMapping

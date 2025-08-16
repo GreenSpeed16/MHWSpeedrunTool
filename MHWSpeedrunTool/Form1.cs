@@ -76,9 +76,10 @@ namespace MHWSpeedrunTool
                 Constants.Settings.LoadedTab = Constants.WILDS_SAVE_TAB;
             }
 
+            SaveDataService.SwapState(loadedGame);
+
             saveForm.Text =  $"{gameString} Save Management";
             saveForm.ChangeTitle(gameString);
-            SaveDataService.SwapState(loadedGame);
         }
 
         void setTrackForm()

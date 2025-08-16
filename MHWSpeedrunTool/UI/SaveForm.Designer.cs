@@ -39,7 +39,7 @@
             cboNewSave = new GroupBox();
             cmdBackupCurrentSave = new Button();
             cmdOverwriteMain = new Button();
-            lblWorldTitle = new Label();
+            lblGameTitle = new Label();
             cboBackups.SuspendLayout();
             cboNewSave.SuspendLayout();
             SuspendLayout();
@@ -151,16 +151,16 @@
             cmdOverwriteMain.Text = "Overwrite Main";
             cmdOverwriteMain.UseVisualStyleBackColor = true;
             // 
-            // lblWorldTitle
+            // lblGameTitle
             // 
-            lblWorldTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            lblWorldTitle.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
-            lblWorldTitle.Location = new Point(376, 9);
-            lblWorldTitle.Name = "lblWorldTitle";
-            lblWorldTitle.Size = new Size(192, 52);
-            lblWorldTitle.TabIndex = 5;
-            lblWorldTitle.Text = "World";
-            lblWorldTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblGameTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            lblGameTitle.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
+            lblGameTitle.Location = new Point(376, 9);
+            lblGameTitle.Name = "lblGameTitle";
+            lblGameTitle.Size = new Size(192, 52);
+            lblGameTitle.TabIndex = 5;
+            lblGameTitle.Text = "World";
+            lblGameTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // SaveForm
             // 
@@ -168,7 +168,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(934, 509);
             ControlBox = false;
-            Controls.Add(lblWorldTitle);
+            Controls.Add(lblGameTitle);
             Controls.Add(cboNewSave);
             Controls.Add(cmdLoadMainSave);
             Controls.Add(lblSaveName);
@@ -198,6 +198,6 @@
         private GroupBox cboNewSave;
         private Button cmdOverwriteMain;
         private Button cmdBackupCurrentSave;
-        private Label lblWorldTitle;
+        private Label lblGameTitle;
     }
 }

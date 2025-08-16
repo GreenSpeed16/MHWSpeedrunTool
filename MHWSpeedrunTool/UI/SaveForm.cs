@@ -19,7 +19,8 @@ namespace MHWSpeedrunTool
 
         public void ChangeTitle(string title)
         {
-            lblWorldTitle.Text = title;
+            lblGameTitle.Text = title;
+            UiController.SetSaveList(lstSaveNames);
         }
     }
 }
