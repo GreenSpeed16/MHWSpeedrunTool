@@ -14,7 +14,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
         protected string GameId { get; set; }
 
-        protected string GameSaveFolder
+        public string GameSaveFolder
         {
             get
             {
@@ -53,9 +53,9 @@ namespace MHWSpeedrunTool.SaveManagement
         protected string FormatSaveName(string saveFileName)
         {
             if (saveFileName == LoadedSave) return "";
-            if (saveFileName == "MainSave")
+            if (saveFileName == "Main")
             {
-                return "MainSave";
+                return "Main";
             }
             else
             {
