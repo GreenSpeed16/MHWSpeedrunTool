@@ -22,5 +22,35 @@ namespace MHWSpeedrunTool
             lblGameTitle.Text = title;
             UiController.SetSaveList(lstSaveNames);
         }
+
+        private void cmdLoadSelectedSave_Click(object sender, EventArgs e)
+        {
+            UiController.LoadSave(lstSaveNames.SelectedItem.ToString(), lblSaveName);
+        }
+
+        private void cmdRenameSelectedSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdDeleteSelectedSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdLoadMainSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdBackupCurrentSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdOverwriteMain_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

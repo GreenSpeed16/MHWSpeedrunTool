@@ -163,6 +163,21 @@ namespace MHWSpeedrunTool
             }
         }
 
+        public static void LoadSave(string selectedSave, Label saveNameLabel)
+        {
+            if(SaveDataService.LoadedSave == "Main")
+            {
+                DialogResult mainBackupChoice =  MessageBox.Show($"You are about to switch from your main save. Would you like to update its backup?", "Main Save Warning", MessageBoxButtons.YesNo);
+
+                if(mainBackupChoice == DialogResult.Yes)
+                {
+                    SaveDataService.BackupSave("Main");
+                }
+            }
+            SaveDataService.LoadSave(selectedSave);
+            saveNameLabel.Text = selectedSave;
+        }
+
         public class ComboBoxMapping
         {
             public string Label { get; set; }

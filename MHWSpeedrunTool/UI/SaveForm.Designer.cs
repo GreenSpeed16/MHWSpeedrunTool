@@ -66,6 +66,7 @@
             cmdDeleteSelectedSave.TabIndex = 3;
             cmdDeleteSelectedSave.Text = "Delete Selected Save";
             cmdDeleteSelectedSave.UseVisualStyleBackColor = true;
+            cmdDeleteSelectedSave.Click += cmdDeleteSelectedSave_Click;
             // 
             // lstSaveNames
             // 
@@ -84,6 +85,7 @@
             cmdRenameSelectedSave.TabIndex = 2;
             cmdRenameSelectedSave.Text = "Rename Selected Save";
             cmdRenameSelectedSave.UseVisualStyleBackColor = true;
+            cmdRenameSelectedSave.Click += cmdRenameSelectedSave_Click;
             // 
             // cmdLoadSelectedSave
             // 
@@ -93,6 +95,7 @@
             cmdLoadSelectedSave.TabIndex = 1;
             cmdLoadSelectedSave.Text = "Load Selected Save";
             cmdLoadSelectedSave.UseVisualStyleBackColor = true;
+            cmdLoadSelectedSave.Click += cmdLoadSelectedSave_Click;
             // 
             // lblCurrentlyLoadedSave
             // 
@@ -121,6 +124,7 @@
             cmdLoadMainSave.TabIndex = 3;
             cmdLoadMainSave.Text = "Load Main Save";
             cmdLoadMainSave.UseVisualStyleBackColor = true;
+            cmdLoadMainSave.Click += cmdLoadMainSave_Click;
             // 
             // cboNewSave
             // 
@@ -141,6 +145,7 @@
             cmdBackupCurrentSave.TabIndex = 5;
             cmdBackupCurrentSave.Text = "Backup Current Save";
             cmdBackupCurrentSave.UseVisualStyleBackColor = true;
+            cmdBackupCurrentSave.Click += cmdBackupCurrentSave_Click;
             // 
             // cmdOverwriteMain
             // 
@@ -150,6 +155,7 @@
             cmdOverwriteMain.TabIndex = 0;
             cmdOverwriteMain.Text = "Overwrite Main";
             cmdOverwriteMain.UseVisualStyleBackColor = true;
+            cmdOverwriteMain.Click += cmdOverwriteMain_Click;
             // 
             // lblGameTitle
             // 

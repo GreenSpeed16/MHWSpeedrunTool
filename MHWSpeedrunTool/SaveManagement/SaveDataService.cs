@@ -18,6 +18,14 @@ namespace MHWSpeedrunTool.SaveManagement
             }
         }
 
+        public static string LoadedSave
+        {
+            get
+            {
+                return _currentState.LoadedSave;
+            }
+        }
+
         public enum LoadedGame
         {
             World,
@@ -73,7 +81,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
                 try
                 {
-                    File.Copy(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\MainSave", true);
+                    File.Copy(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\Main", true);
                 }
                 catch(FileNotFoundException)
                 {

@@ -30,6 +30,7 @@ namespace MHWSpeedrunTool.SaveManagement
         {
             string savePath = FormatSaveName(saveFileName);
             FileService.CopyDirectory($@"{Constants.APP_DATA_PATH}\Wilds\{savePath}", $@"{GameSaveFolder}\win64", true, true);
+            Constants.Settings.WildsLoadedSave = saveFileName;
         }
 
         public override void BackupSave(string backupSaveFileName)
@@ -39,6 +40,7 @@ namespace MHWSpeedrunTool.SaveManagement
             try
             {
                 FileService.CopyDirectory($@"{GameSaveFolder}\win64", $@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(backupSaveFileName)}", true, true);
+                Constants.Settings.WildsLoadedSave = backupSaveFileName;
             }
             catch (Exception e)
             {
@@ -60,6 +62,11 @@ namespace MHWSpeedrunTool.SaveManagement
             try
             {
                 Directory.Move($@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(oldName)}", $@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(newName)}");
+
+                if(Constants.Settings.WildsLoadedSave == oldName)
+                {
+                    Constants.Settings.WildsLoadedSave = newName;
+                }
             }
             catch (Exception e)
             {
