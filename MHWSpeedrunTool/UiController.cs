@@ -306,6 +306,18 @@ namespace MHWSpeedrunTool
             SaveDataService.BackupSave(userResponse);
         }
 
+        public static void OverwriteMainSave()
+        {
+            string userResponse = Interaction.InputBox($"You are about to overwrite your main save. Type CONFIRM in all caps to continue.", "Overwrite Main Save", "");
+
+            if(!(userResponse == "CONFIRM"))
+            {
+                MessageBox.Show("Overwrite action aborted.", "Overwrite Main Save", MessageBoxButtons.OK);
+                return;
+            }
+            SaveDataService.BackupSave("Main");
+        }
+
         public class ComboBoxMapping
         {
             public string Label { get; set; }

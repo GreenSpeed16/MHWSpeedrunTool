@@ -28,6 +28,7 @@ namespace MHWSpeedrunTool
         private void cmdLoadSelectedSave_Click(object sender, EventArgs e)
         {
             UiController.LoadSave(lstSaveNames.SelectedItem.ToString());
+            UiController.SetSaveList(lstSaveNames, lblSaveName);
         }
 
         private void cmdRenameSelectedSave_Click(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace MHWSpeedrunTool
         private void cmdLoadMainSave_Click(object sender, EventArgs e)
         {
             UiController.LoadSave("Main");
+            UiController.SetSaveList(lstSaveNames, lblSaveName);
         }
 
         private void cmdBackupCurrentSave_Click(object sender, EventArgs e)
@@ -55,7 +57,8 @@ namespace MHWSpeedrunTool
 
         private void cmdOverwriteMain_Click(object sender, EventArgs e)
         {
-
+            UiController.OverwriteMainSave();
+            UiController.SetSaveList(lstSaveNames, lblSaveName);
         }
     }
 }

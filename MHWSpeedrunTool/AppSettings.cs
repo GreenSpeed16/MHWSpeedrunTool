@@ -87,7 +87,7 @@ namespace MHWSpeedrunTool
          */
         public void AddToSaveList(string saveName, List<string> saveList)
         {
-            if (saveList.Contains(saveName)) return;
+            if (saveList.Contains(saveName) || saveName == "Main") return;
 
             saveList.Add(saveName);
             SaveSettings();
