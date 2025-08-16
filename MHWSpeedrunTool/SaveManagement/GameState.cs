@@ -52,7 +52,6 @@ namespace MHWSpeedrunTool.SaveManagement
 
         protected string FormatSaveName(string saveFileName)
         {
-            if (saveFileName == LoadedSave) return "";
             if (saveFileName == "Main")
             {
                 return "Main";
