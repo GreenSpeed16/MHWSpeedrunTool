@@ -11,13 +11,14 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Gameloop.Vdf.JsonConverter;
 using MHWSpeedrunTool.SteamManagement;
+using MHWSpeedrunTool.SaveManagement;
 
 namespace MHWSpeedrunTool
 {
     internal class Constants
     {
         // ENSURE THIS IS FALSE WHEN COMMITTING
-        static bool IS_TEST = false;
+        static bool IS_TEST = true;
 
         // Save management constants
         public static string STEAM_INSTALL_PATH
@@ -80,7 +81,7 @@ namespace MHWSpeedrunTool
         /**
          * Checks current saves in the saves folder against the list from appSettings.json and removes or adds based on missing items
          */
-        public static void SynchronizeSaveList(List<string> saveFiles, List<string> saveList)
+        public static void SynchronizeSaveList(List<string> saveFiles, List<string> saveList, string gameName)
         {
             List<string> missingSavesFromSaveList = saveFiles.Except(saveList).ToList();
             List<string> extraSavesFromSaveList = saveList.Except(saveFiles).ToList();
@@ -103,12 +104,12 @@ namespace MHWSpeedrunTool
             if (savesRemoved.Count > 0)
             {
                 string savesRemovedList = string.Join(Environment.NewLine, savesRemoved.Take(5)) + (savesRemoved.Count > 5 ? $"\nAnd {savesRemoved.Count - 5} more" : "");
-                MessageBox.Show($"Could not find corresponding backups for these saves, so they have been removed:\n{savesRemovedList}","Saves Removed", MessageBoxButtons.OK);
+                MessageBox.Show($"Could not find corresponding backups for these {gameName} saves, so they have been removed:\n{savesRemovedList}","Saves Removed", MessageBoxButtons.OK);
             }
             if (savesAdded.Count > 0)
             {
                 string savesAddedList = string.Join(Environment.NewLine, savesAdded.Take(5)) + (savesAdded.Count > 5 ? $"\nAnd {savesAdded.Count - 5} more" : "");
-                MessageBox.Show($"The following saves have backup files, but were not stored in the save list and have now been added:\n{savesAddedList}","Saves Added", MessageBoxButtons.OK);
+                MessageBox.Show($"The following {gameName} saves have backup files, but were not stored in the save list and have now been added:\n{savesAddedList}","Saves Added", MessageBoxButtons.OK);
             }
 
         }
@@ -155,18 +156,46 @@ namespace MHWSpeedrunTool
             if (File.Exists(@$"{APP_DATA_PATH}\appSettings.json"))
             {
                 Settings = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText($@"{APP_DATA_PATH}\appSettings.json"));
-
             }
+
+            // Back up current save as main if none exists, for both World and Wilds
+            if(!File.Exists($@"{APP_DATA_PATH}\World\Main")) setUpMainBackup("World");
+
+            if (!Directory.Exists($@"{APP_DATA_PATH}\Wilds\Main")) setUpMainBackup("Wilds");
 
             // Get list of saves in the app folder for World and Wilds
             List<string> currentWorldSaves = Directory.GetFiles($@"{APP_DATA_PATH}\World\Saves").ToList();
-            List<string> currentWildsSaves = Directory.GetDirectories($@"{APP_DATA_PATH}\wilds\Saves").ToList();
+            List<string> currentWildsSaves = Directory.GetDirectories($@"{APP_DATA_PATH}\Wilds\Saves").ToList();
 
             SetFileNames(currentWorldSaves);
             SetFileNames(currentWildsSaves);
 
-            SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList);
-            SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList);
+            SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList, "World");
+            SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList, "Wilds");
+        }
+
+        static void setUpMainBackup(string gameName)
+        {
+            // Swap SaveDataService to the relevant game
+            SaveDataService.SwapState((SaveDataService.LoadedGame)Enum.Parse(typeof(SaveDataService.LoadedGame), gameName));
+            if (STEAM_ID == "0" && gameName == "World")
+            {
+                MessageBox.Show("Unable to complete initial save management setup if Steam is not running. Please open Steam and try again.", "Steam Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!Directory.Exists(SaveDataService.CurrentGameSaveFolder))
+            {
+                // Perform this check on every startup, but mark LoadedSave as N/A to avoid notifying the user their game isn't installed every time
+                if (Settings.GetType().GetProperty($"{gameName}LoadedSave").GetValue(Settings).ToString() == "N/A")
+                    return;
+
+                Settings.GetType().GetProperty($"{gameName}LoadedSave").SetValue(Settings, "N/A");
+                MessageBox.Show($"No save data folder for {gameName} found. A main backup will not be created.");
+                return;
+            }
+
+            SaveDataService.BackupSave("Main");
+            Settings.GetType().GetProperty($"{gameName}LoadedSave").SetValue(Settings, "Main");
         }
     }
 }

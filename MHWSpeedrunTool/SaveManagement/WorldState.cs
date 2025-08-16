@@ -48,7 +48,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
             try
             {
-                FileService.CopyDirectory($@"{GameSaveFolder}\SAVEDATA1000", $@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(backupSaveFileName)}", true);
+                File.Copy($@"{GameSaveFolder}\SAVEDATA1000", $@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(backupSaveFileName)}", true);
             }
             catch(Exception e) {
                 // Remove backupSaveFileName from SaveList
