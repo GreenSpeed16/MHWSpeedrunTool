@@ -88,5 +88,16 @@ namespace MHWSpeedrunTool.SaveManagement
                 throw e;
             }
         }
+
+        public override void DeleteSave(string saveName)
+        {
+            base.DeleteSave(saveName);
+
+            try
+            {
+                File.Delete($@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(saveName)}");
+            }
+            catch(Exception e){ }
+        }
     }
 }

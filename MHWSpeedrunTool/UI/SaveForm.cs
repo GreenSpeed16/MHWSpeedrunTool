@@ -22,33 +22,35 @@ namespace MHWSpeedrunTool
         {
             lblSaveName.Text = SaveDataService.LoadedSave;
             lblGameTitle.Text = title;
-            UiController.SetSaveList(lstSaveNames);
+            UiController.SetSaveList(lstSaveNames, lblSaveName);
         }
 
         private void cmdLoadSelectedSave_Click(object sender, EventArgs e)
         {
-            UiController.LoadSave(lstSaveNames.SelectedItem.ToString(), lblSaveName);
+            UiController.LoadSave(lstSaveNames.SelectedItem.ToString());
         }
 
         private void cmdRenameSelectedSave_Click(object sender, EventArgs e)
         {
-            UiController.RenameSave(lstSaveNames.SelectedItem.ToString(),lblSaveName);
-            UiController.SetSaveList(lstSaveNames);
+            UiController.RenameSave(lstSaveNames.SelectedItem.ToString());
+            UiController.SetSaveList(lstSaveNames,lblSaveName);
         }
 
         private void cmdDeleteSelectedSave_Click(object sender, EventArgs e)
         {
-
+            UiController.DeleteSave(lstSaveNames.SelectedItem.ToString(), lstSaveNames);
+            UiController.SetSaveList(lstSaveNames, lblSaveName);
         }
 
         private void cmdLoadMainSave_Click(object sender, EventArgs e)
         {
-            UiController.LoadSave("Main", lblSaveName);
+            UiController.LoadSave("Main");
         }
 
         private void cmdBackupCurrentSave_Click(object sender, EventArgs e)
         {
-
+            UiController.BackupSave();
+            UiController.SetSaveList(lstSaveNames, lblSaveName);
         }
 
         private void cmdOverwriteMain_Click(object sender, EventArgs e)

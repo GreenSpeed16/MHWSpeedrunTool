@@ -68,7 +68,7 @@ namespace MHWSpeedrunTool
 
         public static string? FileNameValidator(string fileName)
         {
-            if(fileName == "Main")
+            if(fileName.ToLower() == "main")
             {
                 return "Cannot name save 'Main' ";
             }
@@ -85,6 +85,21 @@ namespace MHWSpeedrunTool
                 return $"File name contains the following invalid characters:\n{foundInvalidCharacters.ToArray()}";
             }
             return null;
+        }
+
+        public static bool OverWriteValidation(string fileName)
+        {
+            if (SaveDataService.CurrentSaveList.Contains(fileName))
+            {
+                DialogResult overwriteChoice = MessageBox.Show($"{fileName} is already in the save list, would you like to overwrite it?", "Existing Save Warning", MessageBoxButtons.YesNo);
+
+                if (overwriteChoice == DialogResult.No)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
 
         /**
@@ -179,16 +194,17 @@ namespace MHWSpeedrunTool
             box.ValueMember = "Value";
         }
 
-        public static void SetSaveList(ListBox saveList)
+        public static void SetSaveList(ListBox saveList, Label loadedGame)
         {
             saveList.Items.Clear();
             foreach(string save in SaveDataService.CurrentSaveList)
             {
                 saveList.Items.Add(save);
             }
+            loadedGame.Text = SaveDataService.LoadedSave;
         }
 
-        public static void LoadSave(string selectedSave, Label saveNameLabel)
+        public static void LoadSave(string selectedSave)
         {
             if(SaveDataService.LoadedSave == "Main")
             {
@@ -200,13 +216,18 @@ namespace MHWSpeedrunTool
                 }
             }
             SaveDataService.LoadSave(selectedSave);
-            saveNameLabel.Text = SaveDataService.LoadedSave;
         }
 
-        public static void RenameSave(string selectedSave, Label saveNameLabel)
+        public static void RenameSave(string selectedSave)
         {
 
             string userResponse = Interaction.InputBox($"Please enter the new save name.", "Rename Save", $"{selectedSave}");
+
+            if(SaveDataService.CurrentSaveList.Contains(userResponse))
+            {
+                MessageBox.Show($"Cannot rename save to existing save.", "Save Exists Warning", MessageBoxButtons.OK);
+                return;
+            }
 
             bool inputVerification = false;
 
@@ -214,8 +235,12 @@ namespace MHWSpeedrunTool
             {
                 string? nameValidation = FileNameValidator(userResponse);
 
-                if(!string.IsNullOrEmpty(nameValidation))
+                if(!string.IsNullOrWhiteSpace(nameValidation))
                 {
+                    if(nameValidation == "Cannot have blank file name.")
+                    {
+                        return;
+                    }
                     userResponse = Interaction.InputBox($"{nameValidation}\n Please enter a valid save name.", "Rename Save", $"{selectedSave}");
                 }
                 else
@@ -224,7 +249,61 @@ namespace MHWSpeedrunTool
                 }
             }
             SaveDataService.RenameSave(selectedSave, userResponse);
-            saveNameLabel.Text = SaveDataService.LoadedSave;
+        }
+
+        public static void DeleteSave(string selectedSave, ListBox saveList)
+        {
+            if (selectedSave == SaveDataService.LoadedSave)
+            {
+                MessageBox.Show($"You cannot delete your currently loaded save. Please load another save first.", "Save Deletion Warning", MessageBoxButtons.OK);
+                return;
+            }
+
+            DialogResult deleteSaveChoice = MessageBox.Show($"You are about to delete: {selectedSave}. Please confirm.", "Save Deletion Warning", MessageBoxButtons.YesNo);
+
+            if (deleteSaveChoice == DialogResult.Yes)
+            {
+                SaveDataService.DeleteSave(selectedSave);
+            }
+        }
+
+        public static void BackupSave()
+        {
+            string userResponse = Interaction.InputBox($"Please enter the backup name.", "Backup Save", "");
+
+            bool overwriteResponse = OverWriteValidation(userResponse);
+
+            while (overwriteResponse)
+            {
+                userResponse = Interaction.InputBox($"Please enter the backup name.", "Backup Save", "");
+
+                overwriteResponse = OverWriteValidation(userResponse);
+            }
+
+            bool inputVerification = false;
+
+            while (!inputVerification)
+            {
+                string? nameValidation = FileNameValidator(userResponse);
+
+                if (!string.IsNullOrWhiteSpace(nameValidation))
+                {
+                    if (nameValidation == "Cannot have blank file name.")
+                    {
+                        return;
+                    }
+
+                    userResponse = Interaction.InputBox($"{nameValidation}\n Please enter a valid save name.", "Rename Save", $"");
+                }
+                else
+                {
+                    inputVerification = true;
+                }
+            }
+
+            if (string.IsNullOrEmpty(userResponse)) { return; }
+
+            SaveDataService.BackupSave(userResponse);
         }
 
         public class ComboBoxMapping

@@ -116,7 +116,6 @@ namespace MHWSpeedrunTool
         /**
          * This edits the list of file names or direectories to only have the name instead of the full UNC path
          */
-
         public static void SetFileNames(List<string> fileList)
         {
             int fileCount = fileList.Count;
