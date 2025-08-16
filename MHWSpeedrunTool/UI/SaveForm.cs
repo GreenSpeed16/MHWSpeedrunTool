@@ -40,7 +40,7 @@ namespace MHWSpeedrunTool
 
         private void cmdLoadMainSave_Click(object sender, EventArgs e)
         {
-
+            UiController.LoadSave("Main", lblSaveName);
         }
 
         private void cmdBackupCurrentSave_Click(object sender, EventArgs e)

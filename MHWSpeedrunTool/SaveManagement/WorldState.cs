@@ -30,7 +30,7 @@ namespace MHWSpeedrunTool.SaveManagement
         {
             try
             {
-                FileService.CopyDirectory($@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(saveFileName)}", $@"{GameSaveFolder}\SAVEDATA1000", true);
+                File.Copy($@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(saveFileName)}", $@"{GameSaveFolder}\SAVEDATA1000", true);
                 Constants.Settings.WorldLoadedSave = saveFileName;
             }
             catch(Exception e)
@@ -49,7 +49,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
             try
             {
-                FileService.CopyDirectory($@"{GameSaveFolder}\SAVEDATA1000", $@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(backupSaveFileName)}", true);
+                File.Copy($@"{GameSaveFolder}\SAVEDATA1000", $@"{Constants.APP_DATA_PATH}\World\{FormatSaveName(backupSaveFileName)}", true);
                 Constants.Settings.WorldLoadedSave = backupSaveFileName;
             }
             catch(Exception e) {
