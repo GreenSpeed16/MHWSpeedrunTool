@@ -10,6 +10,22 @@ namespace MHWSpeedrunTool.SaveManagement
     {
         static GameState _currentState;
 
+        public static List<string> CurrentSaveList
+        {
+            get
+            {
+                return _currentState.SaveList;
+            }
+        }
+
+        public static string LoadedSave
+        {
+            get
+            {
+                return _currentState.LoadedSave;
+            }
+        }
+
         public static string CurrentGameSaveFolder
         {
             get
@@ -17,6 +33,7 @@ namespace MHWSpeedrunTool.SaveManagement
                 return _currentState.GameSaveFolder;
             }
         }
+
         public enum LoadedGame
         {
             World,
@@ -50,9 +67,23 @@ namespace MHWSpeedrunTool.SaveManagement
             _currentState.BackupSave(backupSaveFileName);
         }
 
+        /**
+         * @param string oldName - Name of the current save file
+         * @param string newName - New name for the save file
+         * Renames the currently selected save
+         */
         public static void RenameSave(string oldName, string newName)
         {
             _currentState.RenameSave(oldName, newName);
+        }
+
+        /**
+         * @param string saveName - Name of the save to be deleted
+         * Deletes currently selected save
+         */
+        public static void DeleteSave(string saveName)
+        {
+            _currentState.DeleteSave(saveName);
         }
 
         /**

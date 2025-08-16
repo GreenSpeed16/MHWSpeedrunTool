@@ -50,9 +50,16 @@ namespace MHWSpeedrunTool.SaveManagement
             Constants.Settings.RenameSave(newName, SaveList.IndexOf(oldName), SaveList);
         }
 
+        /**
+         * @param string saveName - Name of the file you want to delete
+         */
+        public virtual void DeleteSave(string saveName)
+        {
+            Constants.Settings.RemoveFromSaveList(saveName, SaveList);
+        }
+
         protected string FormatSaveName(string saveFileName)
         {
-            if (saveFileName == LoadedSave) return "";
             if (saveFileName == "Main")
             {
                 return "Main";
