@@ -14,7 +14,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
         protected string GameId { get; set; }
 
-        protected string GameSaveFolder
+        public string GameSaveFolder
         {
             get
             {

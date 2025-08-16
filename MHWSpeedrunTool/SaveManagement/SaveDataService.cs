@@ -26,6 +26,14 @@ namespace MHWSpeedrunTool.SaveManagement
             }
         }
 
+        public static string CurrentGameSaveFolder
+        {
+            get
+            {
+                return _currentState.GameSaveFolder;
+            }
+        }
+
         public enum LoadedGame
         {
             World,
