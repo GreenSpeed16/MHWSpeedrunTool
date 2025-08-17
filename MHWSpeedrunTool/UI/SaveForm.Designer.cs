@@ -51,16 +51,16 @@
             cboBackups.Controls.Add(lstSaveNames);
             cboBackups.Controls.Add(cmdRenameSelectedSave);
             cboBackups.Controls.Add(cmdLoadSelectedSave);
-            cboBackups.Location = new Point(628, 99);
+            cboBackups.Location = new Point(569, 99);
             cboBackups.Name = "cboBackups";
-            cboBackups.Size = new Size(294, 237);
+            cboBackups.Size = new Size(353, 237);
             cboBackups.TabIndex = 0;
             cboBackups.TabStop = false;
             cboBackups.Text = "Backups";
             // 
             // cmdDeleteSelectedSave
             // 
-            cmdDeleteSelectedSave.Location = new Point(127, 181);
+            cmdDeleteSelectedSave.Location = new Point(182, 178);
             cmdDeleteSelectedSave.Name = "cmdDeleteSelectedSave";
             cmdDeleteSelectedSave.Size = new Size(165, 40);
             cmdDeleteSelectedSave.TabIndex = 3;
@@ -76,7 +76,7 @@
             lstSaveNames.ItemHeight = 15;
             lstSaveNames.Location = new Point(6, 22);
             lstSaveNames.Name = "lstSaveNames";
-            lstSaveNames.Size = new Size(100, 199);
+            lstSaveNames.Size = new Size(170, 199);
             lstSaveNames.TabIndex = 0;
             lstSaveNames.DragDrop += lstSaveNames_DragDrop;
             lstSaveNames.DragEnter += lstSaveNames_DragEnter;
@@ -85,7 +85,7 @@
             // 
             // cmdRenameSelectedSave
             // 
-            cmdRenameSelectedSave.Location = new Point(127, 103);
+            cmdRenameSelectedSave.Location = new Point(182, 100);
             cmdRenameSelectedSave.Name = "cmdRenameSelectedSave";
             cmdRenameSelectedSave.Size = new Size(165, 40);
             cmdRenameSelectedSave.TabIndex = 2;
@@ -95,7 +95,7 @@
             // 
             // cmdLoadSelectedSave
             // 
-            cmdLoadSelectedSave.Location = new Point(127, 22);
+            cmdLoadSelectedSave.Location = new Point(182, 19);
             cmdLoadSelectedSave.Name = "cmdLoadSelectedSave";
             cmdLoadSelectedSave.Size = new Size(165, 40);
             cmdLoadSelectedSave.TabIndex = 1;
