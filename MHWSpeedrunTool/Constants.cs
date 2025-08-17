@@ -11,11 +11,34 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Gameloop.Vdf.JsonConverter;
 using MHWSpeedrunTool.SteamManagement;
+using MHWSpeedrunTool.SaveManagement;
 
 namespace MHWSpeedrunTool
 {
     internal class Constants
     {
+        // ENSURE THIS IS FALSE WHEN COMMITTING
+        static bool IS_TEST = false;
+
+        // Save management constants
+        public static string STEAM_INSTALL_PATH
+        {
+            get
+            {
+                return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", null).ToString();
+            }
+        }
+        public static string STEAM_ID
+        {
+            get
+            {
+                return Registry.GetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam\ActiveProcess", "ActiveUser", null).ToString();
+            }
+        }
+        public static string WORLD_ID = "582010";
+        public static string WILDS_ID = "2246340";
+
+        // Track management constants
         public static string PINK_RATHIAN_ID = "em001_01";
         public static string KIRIN_ID = "em011_00";
         public static string KUSHALA_DAORA_ID = "em024_00";
@@ -48,7 +71,61 @@ namespace MHWSpeedrunTool
 
         public static string APP_DATA_PATH = "";
 
+        // Tab settings
+        public static string WORLD_TRACKS_TAB = "WorldTracks";
+        public static string WORLD_SAVE_TAB = "WorldSaves";
+        public static string WILDS_SAVE_TAB = "WildsSaves";        
+
         public static AppSettings Settings = new AppSettings();
+
+        /**
+         * Checks current saves in the saves folder against the list from appSettings.json and removes or adds based on missing items
+         */
+        public static void SynchronizeSaveList(List<string> saveFiles, List<string> saveList, string gameName)
+        {
+            List<string> missingSavesFromSaveList = saveFiles.Except(saveList).ToList();
+            List<string> extraSavesFromSaveList = saveList.Except(saveFiles).ToList();
+
+            List<string> savesRemoved = new List<string>();
+            List<string> savesAdded = new List<string>();
+
+            foreach (var difference in missingSavesFromSaveList)
+            {
+                Settings.AddToSaveList(difference, saveList);
+                savesAdded.Add(difference);
+            }
+
+            foreach (var difference in extraSavesFromSaveList)
+            {
+                Settings.RemoveFromSaveList(difference, saveList);
+                savesRemoved.Add(difference);
+            }
+
+            if (savesRemoved.Count > 0)
+            {
+                string savesRemovedList = string.Join(Environment.NewLine, savesRemoved.Take(5)) + (savesRemoved.Count > 5 ? $"\nAnd {savesRemoved.Count - 5} more" : "");
+                MessageBox.Show($"Could not find corresponding backups for these {gameName} saves, so they have been removed:\n{savesRemovedList}","Saves Removed", MessageBoxButtons.OK);
+            }
+            if (savesAdded.Count > 0)
+            {
+                string savesAddedList = string.Join(Environment.NewLine, savesAdded.Take(5)) + (savesAdded.Count > 5 ? $"\nAnd {savesAdded.Count - 5} more" : "");
+                MessageBox.Show($"The following {gameName} saves have backup files, but were not stored in the save list and have now been added:\n{savesAddedList}","Saves Added", MessageBoxButtons.OK);
+            }
+
+        }
+
+        /**
+         * This edits the list of file names or direectories to only have the name instead of the full UNC path
+         */
+        public static void SetFileNames(List<string> fileList)
+        {
+            int fileCount = fileList.Count;
+
+            for(int i = 0; i < fileCount; i++)
+            {
+                fileList[i] = Path.GetFileName(fileList[i]);
+            }
+        }
 
         /**
          * Loads the constant strings from JSON file, and saves the JSON to _rawJson for quick access later
@@ -57,12 +134,21 @@ namespace MHWSpeedrunTool
         {
             if (string.IsNullOrEmpty(APP_DATA_PATH))
             {
-                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MHWSpeedrunTool";
+                APP_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                    + (IS_TEST ? @"\MHWSpeedrunToolTest" : @"\MHWSpeedrunTool");
 
                 if (!Directory.Exists($@"{APP_DATA_PATH}\Track Files"))
                 {
                     Directory.CreateDirectory(APP_DATA_PATH);
-                    TrackService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
+                    FileService.CopyDirectory(@".\Track Files", $@"{APP_DATA_PATH}\Track Files", true);
+                }
+                if (!Directory.Exists($@"{APP_DATA_PATH}\World\Saves"))
+                {
+                    Directory.CreateDirectory($@"{APP_DATA_PATH}\World\Saves");
+                }
+                if (!Directory.Exists($@"{APP_DATA_PATH}\Wilds\Saves"))
+                {
+                    Directory.CreateDirectory($@"{APP_DATA_PATH}\Wilds\Saves");
                 }
             }
 
@@ -70,11 +156,50 @@ namespace MHWSpeedrunTool
             {
                 Settings = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText($@"{APP_DATA_PATH}\appSettings.json"));
             }
-            if(String.IsNullOrEmpty(Settings.MhwInstallPath))
+
+            // Back up current save as main if none exists, for both World and Wilds
+            if(!File.Exists($@"{APP_DATA_PATH}\World\Main")) setUpMainBackup("World");
+
+            if (!Directory.Exists($@"{APP_DATA_PATH}\Wilds\Main")) setUpMainBackup("Wilds");
+
+            // Get list of saves in the app folder for World and Wilds
+            List<string> currentWorldSaves = Directory.GetFiles($@"{APP_DATA_PATH}\World\Saves").ToList();
+            List<string> currentWildsSaves = Directory.GetDirectories($@"{APP_DATA_PATH}\Wilds\Saves").ToList();
+
+            SetFileNames(currentWorldSaves);
+            SetFileNames(currentWildsSaves);
+            
+            if(Settings.LoadedTab != null && Settings.LoadedTab.Contains("Saves"))
             {
-                UiController.SetMhwPath(null, false);
+                SaveDataService.SwapState((SaveDataService.LoadedGame)Enum.Parse(typeof(SaveDataService.LoadedGame), Settings.LoadedTab.Replace("Saves", "")));
             }
 
+            SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList, "World");
+            SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList, "Wilds");
+        }
+
+        static void setUpMainBackup(string gameName)
+        {
+            // Swap SaveDataService to the relevant game
+            SaveDataService.SwapState((SaveDataService.LoadedGame)Enum.Parse(typeof(SaveDataService.LoadedGame), gameName));
+            if (STEAM_ID == "0" && gameName == "World")
+            {
+                MessageBox.Show("Unable to complete initial save management setup if Steam is not running. Please open Steam and try again.", "Steam Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!Directory.Exists(SaveDataService.CurrentGameSaveFolder))
+            {
+                // Perform this check on every startup, but mark LoadedSave as N/A to avoid notifying the user their game isn't installed every time
+                if (Settings.GetType().GetProperty($"{gameName}LoadedSave").GetValue(Settings).ToString() == "N/A")
+                    return;
+
+                Settings.GetType().GetProperty($"{gameName}LoadedSave").SetValue(Settings, "N/A");
+                MessageBox.Show($"No save data folder for {gameName} found. A main backup will not be created.");
+                return;
+            }
+
+            SaveDataService.BackupSave("Main");
+            Settings.GetType().GetProperty($"{gameName}LoadedSave").SetValue(Settings, "Main");
         }
     }
 }

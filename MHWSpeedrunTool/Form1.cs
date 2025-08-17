@@ -1,3 +1,4 @@
+using MHWSpeedrunTool.SaveManagement;
 using MHWSpeedrunTool.TrackManagement;
 using Microsoft.VisualBasic;
 using System.Runtime.InteropServices;
@@ -6,217 +7,106 @@ namespace MHWSpeedrunTool
 {
     public partial class Form1 : Form
     {
-        List<MonsterPattern> patterns;
+        WorldTrackForm trackForm;
+        SaveForm saveForm;
+
         public Form1()
         {
             InitializeComponent();
 
-            patterns = new List<MonsterPattern>{
-                new MonsterPattern(Constants.PINK_RATHIAN_ID),
-                new MonsterPattern(Constants.KIRIN_ID),
-                new MonsterPattern(Constants.TEOSTRA_ID),
-                new MonsterPattern(Constants.KUSHALA_DAORA_ID),
-                new MonsterPattern(Constants.VAAL_HAZAK_ID),
-                new MonsterPattern(Constants.NERGIGANTE_ID),
-                new MonsterPattern(Constants.VELKHANA_ID),
-                new MonsterPattern(Constants.BLACKVEIL_ID),
-                new MonsterPattern(Constants.NAMIELLE_ID),
-            };
-
-            UiController.BindComboBox(cboRathianForest);
-            UiController.BindComboBox(cboRathianWaste);
-            UiController.BindComboBox(cboRathianCoral);
-            UiController.BindComboBox(cboRathianVale);
-
-            UiController.BindComboBox(cboKushala);
-            UiController.BindComboBox(cboTeostra);
-            UiController.BindComboBox(cboVaal);
-            UiController.BindComboBox(cboKirin);
-            UiController.BindComboBox(cboNergigante);
-
-            UiController.BindComboBox(cboVelkhanaForest);
-            UiController.BindComboBox(cboVelkhanaWaste);
-            UiController.BindComboBox(cboVelkhanaCoral);
-            UiController.BindComboBox(cboVelkhanaVale);
-            UiController.BindComboBox(cboVelkhanaRecess);
-            UiController.BindComboBox(cboVelkhanaHoarfrost);
-
-            UiController.BindComboBox(cboBlackveilForest);
-            UiController.BindComboBox(cboBlackveilWaste);
-            UiController.BindComboBox(cboBlackveilCoral);
-            UiController.BindComboBox(cboBlackveilVale);
-            UiController.BindComboBox(cboBlackveilRecess);
-            UiController.BindComboBox(cboBlackveilHoarfrost);
-
-            UiController.BindComboBox(cboNamielleForest);
-            UiController.BindComboBox(cboNamielleWaste);
-            UiController.BindComboBox(cboNamielleCoral);
-            UiController.BindComboBox(cboNamielleVale);
-            UiController.BindComboBox(cboNamielleRecess);
-            UiController.BindComboBox(cboNamielleHoarfrost);
-
-            lblWorldPath.Text = UiController.GetWorldPathLabelText();
+            if(Constants.Settings.LoadedTab == Constants.WORLD_SAVE_TAB)
+            {
+                setSaveForm(SaveDataService.LoadedGame.World);
+            }
+            else if (Constants.Settings.LoadedTab == Constants.WILDS_SAVE_TAB)
+            {
+                setSaveForm(SaveDataService.LoadedGame.Wilds);
+            }
+            else
+            {
+                setTrackForm();
+            }
         }
 
-        private void btnLoadNativePc_Click(object sender, EventArgs e)
+        private void btnLoadTrackForm_Click(object sender, EventArgs e)
         {
-            TrackService.BuildNativePc(patterns);
-            UiController.DisableLoadNativePc(btnLoadNativePc);
+            setTrackForm();
         }
 
-        // Pink Rathian
-        private void cboRathianForest_SelectedValueChanged(object sender, EventArgs e)
+        private void WorldTrackForm_FormClosed(object sender, EventArgs e)
         {
-            HandleComboboxChange(sender, Constants.PINK_RATHIAN_ID, Constants.FOREST_ID);
+            trackForm = null;
         }
 
-        private void cboRathianWaste_SelectedValueChanged(object sender, EventArgs e)
+        private void btnLoadWorldSaveForm_Click(object sender, EventArgs e)
         {
-            HandleComboboxChange(sender, Constants.PINK_RATHIAN_ID, Constants.WASTE_ID);
+            setSaveForm(SaveDataService.LoadedGame.World);
         }
 
-        private void cboRathianCoral_SelectedValueChanged(object sender, EventArgs e)
+        private void btnLoadWildsSaveForm_Click(object sender, EventArgs e)
         {
-            HandleComboboxChange(sender, Constants.PINK_RATHIAN_ID, Constants.CORAL_ID);
+            setSaveForm(SaveDataService.LoadedGame.Wilds);
         }
 
-        private void cboRathianVale_SelectedValueChanged(object sender, EventArgs e)
+        void setSaveForm(SaveDataService.LoadedGame loadedGame)
         {
-            HandleComboboxChange(sender, Constants.PINK_RATHIAN_ID, Constants.VALE_ID);
+            if (saveForm == null)
+            {
+                saveForm = new SaveForm();
+                saveForm.FormClosed += SaveForm_FormClosed;
+                saveForm.MdiParent = this;
+                saveForm.Show();
+            }
+            else
+            {
+                saveForm.Activate();
+            }
+
+            string gameString = "";
+
+            if (loadedGame == SaveDataService.LoadedGame.World)
+            {
+                gameString = "World";
+                Constants.Settings.LoadedTab = Constants.WORLD_SAVE_TAB;
+            }
+            else
+            {
+                gameString = "Wilds";
+                Constants.Settings.LoadedTab = Constants.WILDS_SAVE_TAB;
+            }
+
+            SaveDataService.SwapState(loadedGame);
+
+            saveForm.Text =  $"{gameString} Save Management";
+            saveForm.ChangeTitle(gameString);
         }
 
-        //HR Elders
-        private void cboKushala_SelectedValueChanged(object sender, EventArgs e)
+        void setTrackForm()
         {
-            HandleComboboxChange(sender, Constants.KUSHALA_DAORA_ID, Constants.FOREST_ID);
+            if (trackForm == null)
+            {
+                trackForm = new WorldTrackForm();
+                trackForm.FormClosed += WorldTrackForm_FormClosed;
+                trackForm.MdiParent = this;
+                trackForm.Show();
+            }
+            else
+            {
+                trackForm.Activate();
+            }
+            Constants.Settings.LoadedTab = Constants.WORLD_TRACKS_TAB;
         }
 
-        private void cboTeostra_SelectedValueChanged(object sender, EventArgs e)
+        private void SaveForm_FormClosed(object sender, EventArgs e)
         {
-            HandleComboboxChange(sender, Constants.TEOSTRA_ID, Constants.WASTE_ID);
+            trackForm = null;
         }
 
-        private void cboVaal_SelectedValueChanged(object sender, EventArgs e)
+        private void btnTransferFromOldManager_Click(object sender, EventArgs e)
         {
-            HandleComboboxChange(sender, Constants.VAAL_HAZAK_ID, Constants.VALE_ID);
-        }
-
-        private void cboKirin_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.KIRIN_ID, Constants.CORAL_ID);
-        }
-
-        private void cboNergigante_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NERGIGANTE_ID, Constants.RECESS_ID);
-        }
-
-        // Velkhana
-        private void cboVelkhanaForest_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.VELKHANA_ID, Constants.FOREST_ID);
-        }
-
-        private void cboVelkhanaWaste_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.VELKHANA_ID, Constants.WASTE_ID);
-        }
-
-        private void cboVelkhanaCoral_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.VELKHANA_ID, Constants.CORAL_ID);
-        }
-
-        private void cboVelkhanaVale_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.VELKHANA_ID, Constants.VALE_ID);
-        }
-
-        private void cboVelkhanaRecess_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.VELKHANA_ID, Constants.RECESS_ID);
-        }
-
-        private void cboVelkhanaHoarfrost_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.VELKHANA_ID, Constants.HOARFROST_ID);
-        }
-
-        // Blackveil
-        private void cboBlackveilForest_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.BLACKVEIL_ID, Constants.FOREST_ID);
-        }
-
-        private void cboBlackveilWaste_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.BLACKVEIL_ID, Constants.WASTE_ID);
-        }
-
-        private void cboBlackveilCoral_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.BLACKVEIL_ID, Constants.CORAL_ID);
-        }
-
-        private void cboBlackveilVale_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.BLACKVEIL_ID, Constants.VALE_ID);
-        }
-
-        private void cboBlackveilRecess_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.BLACKVEIL_ID, Constants.RECESS_ID);
-        }
-
-        private void cboBlackveilHoarfrost_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.BLACKVEIL_ID, Constants.HOARFROST_ID);
-        }
-
-        // Namielle
-        private void cboNamielleForest_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.FOREST_ID);
-        }
-
-        private void cboNamielleWaste_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.WASTE_ID);
-        }
-
-        private void cboNamielleCoral_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.CORAL_ID);
-        }
-
-        private void cboNamielleVale_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.VALE_ID);
-        }
-
-        private void cboNamielleRecess_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.RECESS_ID);
-        }
-
-        private void cboNamielleHoarfrost_SelectedValueChanged(object sender, EventArgs e)
-        {
-            HandleComboboxChange(sender, Constants.NAMIELLE_ID, Constants.HOARFROST_ID);
-        }
-
-        private void btnLocateWorldFolder_Click(object sender, EventArgs e)
-        {
-            UiController.SetMhwPath(lblWorldPath, false);
-        }
-
-        private void btnSetWorldFolder_Click(object sender, EventArgs e)
-        {
-            UiController.SetMhwPath(lblWorldPath, true);
-        }
-
-        private void HandleComboboxChange(object sender, string monsterId, string stageId)
-        {
-            UiController.HandleComboboxChange(sender as ComboBox, monsterId, stageId, patterns, btnLoadNativePc);
+            UiController.TransferDataFromOldSaveManager();
+            setSaveForm(SaveDataService.LoadedGame.World);
+            saveForm.RefreshUi();
         }
     }
 }
