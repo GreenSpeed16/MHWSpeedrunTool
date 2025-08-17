@@ -70,12 +70,18 @@
             // 
             // lstSaveNames
             // 
+            lstSaveNames.AllowDrop = true;
             lstSaveNames.FormattingEnabled = true;
+            lstSaveNames.HorizontalScrollbar = true;
             lstSaveNames.ItemHeight = 15;
             lstSaveNames.Location = new Point(6, 22);
             lstSaveNames.Name = "lstSaveNames";
             lstSaveNames.Size = new Size(100, 199);
             lstSaveNames.TabIndex = 0;
+            lstSaveNames.DragDrop += lstSaveNames_DragDrop;
+            lstSaveNames.DragEnter += lstSaveNames_DragEnter;
+            lstSaveNames.DragOver += lstSaveNames_DragOver;
+            lstSaveNames.MouseDown += lstSaveNames_MouseDown;
             // 
             // cmdRenameSelectedSave
             // 
