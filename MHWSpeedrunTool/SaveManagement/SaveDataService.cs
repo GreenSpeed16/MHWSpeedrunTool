@@ -104,6 +104,11 @@ namespace MHWSpeedrunTool.SaveManagement
                 try
                 {
                     File.Copy(oldFilePath + @"\MainSave\MainData", $@"{Constants.APP_DATA_PATH}\World\Main", true);
+
+                    // Load main save, ensuring current state is preserved
+                    Constants.Settings.WorldLoadedSave = "";
+                    SwapState(LoadedGame.World);
+                    LoadSave("Main");
                 }
                 catch(FileNotFoundException)
                 {
