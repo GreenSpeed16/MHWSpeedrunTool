@@ -168,6 +168,11 @@ namespace MHWSpeedrunTool
 
             SetFileNames(currentWorldSaves);
             SetFileNames(currentWildsSaves);
+            
+            if(Settings.LoadedTab != null && Settings.LoadedTab.Contains("Saves"))
+            {
+                SaveDataService.SwapState((SaveDataService.LoadedGame)Enum.Parse(typeof(SaveDataService.LoadedGame), Settings.LoadedTab.Replace("Saves", "")));
+            }
 
             SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList, "World");
             SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList, "Wilds");

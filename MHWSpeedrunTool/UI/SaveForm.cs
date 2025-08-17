@@ -9,7 +9,7 @@ namespace MHWSpeedrunTool
             InitializeComponent();
         }
 
-        void RefreshUi()
+        public void RefreshUi()
         {
             UiController.SetSaveList(lstSaveNames, lblSaveName);
 
@@ -26,6 +26,11 @@ namespace MHWSpeedrunTool
             ToggleButton(cmdLoadSelectedSave, enableBtns, "Load Selected Save", disabledReason);
             ToggleButton(cmdBackupCurrentSave, enableBtns, "Backup Current Save", disabledReason);
             ToggleButton(cmdOverwriteMain, enableBtns, "Overwrite Main", disabledReason);
+
+            if(enableBtns)
+            {
+                cmdLoadMainSave.Enabled = SaveDataService.LoadedSave != "Main";
+            }
         }
 
         void ToggleButton(Button btn, bool btnEnabled, string enabledText, string disabledText)

@@ -112,7 +112,7 @@ namespace MHWSpeedrunTool
             if(Directory.Exists($@"{Constants.APP_DATA_PATH}\World") && Directory.EnumerateFiles($@"{Constants.APP_DATA_PATH}\World").Any())
             {
                 DialogResult overwriteResult = MessageBox.Show(
-                    "You have existing save backups for Monster Hunter: World. This operation will overwrite any existing backups that share a name with backups being transferred. Continue?",
+                    "You have existing save backups for Monster Hunter: World. This operation will overwrite any existing backups that share a name with backups being transferred, including your main save. Continue?",
                     "Existing Saves",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning

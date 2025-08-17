@@ -71,6 +71,7 @@ namespace MHWSpeedrunTool
         public AppSettings() {
             WorldSaveList = new List<string>();
             WildsSaveList = new List<string>();
+            LoadedTab = Constants.WORLD_TRACKS_TAB;
         }
 
         // Extremely simplistic for now, but will be useful when save management is added

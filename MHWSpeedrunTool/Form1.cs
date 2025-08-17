@@ -46,7 +46,6 @@ namespace MHWSpeedrunTool
         private void btnLoadWildsSaveForm_Click(object sender, EventArgs e)
         {
             setSaveForm(SaveDataService.LoadedGame.Wilds);
-            Constants.Settings.LoadedTab = Constants.WILDS_SAVE_TAB;
         }
 
         void setSaveForm(SaveDataService.LoadedGame loadedGame)
@@ -106,6 +105,8 @@ namespace MHWSpeedrunTool
         private void btnTransferFromOldManager_Click(object sender, EventArgs e)
         {
             UiController.TransferDataFromOldSaveManager();
+            setSaveForm(SaveDataService.LoadedGame.World);
+            saveForm.RefreshUi();
         }
     }
 }
