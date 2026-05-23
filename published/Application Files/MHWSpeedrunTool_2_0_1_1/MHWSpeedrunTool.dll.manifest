@@ -87,7 +87,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NaJUmbqD81EzwCImcyyCbmA+TKtJWk4qr6lVrGvZn1Y=</dsig:DigestValue>
+      <dsig:DigestValue>XyNn3CGdU8IzZ+kQBc/fWlmtPKQX0LSfUQoY85xq/TM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="MHWSpeedrunTool.exe" size="154112">
@@ -96,7 +96,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>MG6MH0tDDvl0WGgq8qcB2MBGTvdIOT9fnsJZ5tdor8M=</dsig:DigestValue>
+      <dsig:DigestValue>QQcaJjqzwLTukT1PX8aTOatyALCAyW81SOuK7gG3YnI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="MHWSpeedrunTool.runtimeconfig.json" size="515">

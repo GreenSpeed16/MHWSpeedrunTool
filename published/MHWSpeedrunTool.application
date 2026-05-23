@@ -8,7 +8,7 @@
         <beforeApplicationStartup />
       </update>
     </subscription>
-    <deploymentProvider codebase="https://raw.githubusercontent.com/GreenSpeed16/MHWSpeedrunTool/refs/heads/master/published/MHWSpeedrunTool.application" />
+    <deploymentProvider codebase="https://raw.githubusercontent.com/GreenSpeed16/MHWSpeedrunTool/refs/heads/main/published/MHWSpeedrunTool.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
@@ -21,7 +21,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X20zxDdm7eCCxXf7DI76y1sk60CwUcvC2SrrJsQp2d0=</dsig:DigestValue>
+        <dsig:DigestValue>RoIRWruXUad9wOahNsyzOdXWa+DV3MUbhTsbIgM9xPI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
