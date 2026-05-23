@@ -86,7 +86,7 @@ namespace MHWSpeedrunTool.SaveManagement
 
             try
             {
-                Directory.Delete($@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(saveName)}");
+                Directory.Delete($@"{Constants.APP_DATA_PATH}\Wilds\{FormatSaveName(saveName)}", true);
             }
             catch (Exception e) { }
         }
