@@ -68,7 +68,25 @@ namespace MHWSpeedrunTool
             }
         }
 
+        bool _startupComplete;
+        public bool StartupComplete
+        {
+            get
+            {
+                return this._startupComplete;
+            }
+            set
+            {
+                this._startupComplete = value;
+                if(value)
+                {
+                    SaveSettings();
+                }
+            }
+        }
+
         public AppSettings() {
+            StartupComplete = false;
             WorldSaveList = new List<string>();
             WildsSaveList = new List<string>();
             LoadedTab = Constants.WORLD_TRACKS_TAB;
@@ -78,7 +96,10 @@ namespace MHWSpeedrunTool
 
         void SaveSettings()
         {
-            File.WriteAllText(@$"{Constants.APP_DATA_PATH}\appSettings.json", JsonSerializer.Serialize(this));
+            if(this.StartupComplete)
+            {
+                File.WriteAllText(@$"{Constants.APP_DATA_PATH}\appSettings.json", JsonSerializer.Serialize(this));
+            }
         }
 
         /**

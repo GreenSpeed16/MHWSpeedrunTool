@@ -176,6 +176,8 @@ namespace MHWSpeedrunTool
 
             SynchronizeSaveList(currentWorldSaves, Settings.WorldSaveList, "World");
             SynchronizeSaveList(currentWildsSaves, Settings.WildsSaveList, "Wilds");
+
+            Settings.StartupComplete = true;
         }
 
         static void setUpMainBackup(string gameName)
