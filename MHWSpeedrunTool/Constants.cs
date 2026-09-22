@@ -184,15 +184,19 @@ namespace MHWSpeedrunTool
         {
             // Swap SaveDataService to the relevant game
             SaveDataService.SwapState((SaveDataService.LoadedGame)Enum.Parse(typeof(SaveDataService.LoadedGame), gameName));
-            if (STEAM_ID == "0" && gameName == "World")
+            if (STEAM_ID == "0")
             {
-                MessageBox.Show("Unable to complete initial save management setup if Steam is not running. Please open Steam and try again.", "Steam Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Only notify the user once even though 2 games are being checked
+                if(gameName == "World")
+                {
+                    MessageBox.Show("Unable to complete initial save management setup if Steam is not running. Please open Steam and try again.", "Steam Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return;
             }
             if (!Directory.Exists(SaveDataService.CurrentGameSaveFolder))
             {
                 // Perform this check on every startup, but mark LoadedSave as N/A to avoid notifying the user their game isn't installed every time
-                if (Settings.GetType().GetProperty($"{gameName}LoadedSave").GetValue(Settings).ToString() == "N/A")
+                if (Settings.GetType().GetProperty($"{gameName}LoadedSave").GetValue(Settings)?.ToString() == "N/A")
                     return;
 
                 Settings.GetType().GetProperty($"{gameName}LoadedSave").SetValue(Settings, "N/A");
